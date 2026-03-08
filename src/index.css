@@ -584,20 +584,20 @@ section[id] {
 }
 
 .update-embed-shell {
-  display: flex;
-  justify-content: center;
+  display: block;
   width: 100%;
 }
 
-.update-embed-shell .instagram-media {
+.update-embed-frame {
   width: 100%;
-  min-width: 0 !important;
-  max-width: 540px !important;
-  margin: 0 !important;
+  display: block;
+  border: 0;
+  border-radius: 20px;
+  background: white;
 }
 
-.update-embed-shell iframe {
-  max-width: 100%;
+.update-embed-link {
+  margin-top: 0.9rem;
 }
 
 .join-card {

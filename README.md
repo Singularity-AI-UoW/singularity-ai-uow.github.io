@@ -9,7 +9,7 @@ Modern, interactive website for the University of Waikato AI Club.
   - Animated particle background
   - Smooth scroll navigation with a mobile menu
   - Glassmorphism cards with hover effects
-  - Live Instagram embeds that size themselves to each post
+  - Live Instagram embed iframes sized to each post
 - **Sections**:
   - Hero with call-to-action
   - About (Learn, Build, Connect)
@@ -57,7 +57,7 @@ npm run preview
 - **Colors**: Edit CSS variables in `src/index.css`
 - **Content**: Update section data in `src/App.jsx`
 - **Logo**: Replace `public/singularity-icon.svg`
-- **Instagram updates**: Update `public/instagram-posts.json` with the newest Instagram post URLs
+- **Instagram updates**: Update `public/instagram-posts.json` with the newest post URLs and measured embed sizes
 
 ## License
 

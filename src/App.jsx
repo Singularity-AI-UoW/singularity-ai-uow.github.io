@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   ArrowRight,
@@ -101,19 +101,24 @@ const fallbackInstagramPosts = [
   {
     title: 'International Women\'s Day reel',
     href: 'https://www.instagram.com/reel/DVmugzek94K/',
+    embedWidth: 360,
+    embedHeight: 884,
   },
   {
     title: 'Club day update',
     href: 'https://www.instagram.com/p/DVcAjXIE3IM/',
+    embedWidth: 360,
+    embedHeight: 663,
   },
   {
     title: 'Global Game Jam project spotlight',
     href: 'https://www.instagram.com/p/DUpuTP2ER5B/',
+    embedWidth: 360,
+    embedHeight: 510,
   },
 ]
 
 const instagramFeedEndpoint = '/instagram-posts.json'
-const instagramEmbedScriptId = 'instagram-embed-script'
 
 const resources = [
   {
@@ -185,14 +190,32 @@ const joinBenefits = [
 ]
 
 function isValidInstagramPost(post) {
-  return typeof post?.href === 'string' && post.href.startsWith('https://www.instagram.com/')
+  return (
+    typeof post?.href === 'string' &&
+    post.href.startsWith('https://www.instagram.com/') &&
+    Number.isFinite(post?.embedWidth) &&
+    Number.isFinite(post?.embedHeight)
+  )
 }
 
-function getInstagramEmbedPermalink(href) {
-  const permalink = new URL(href)
-  permalink.searchParams.set('utm_source', 'ig_embed')
-  permalink.searchParams.set('utm_campaign', 'loading')
-  return permalink.toString()
+function getInstagramEmbedFrameUrl(href) {
+  const url = new URL(href)
+  url.search = ''
+  url.hash = ''
+  url.pathname = `${url.pathname.replace(/\/$/, '')}/embed/captioned/`
+  return url.toString()
+}
+
+function parseInstagramEmbedMessage(message) {
+  if (typeof message !== 'string') {
+    return null
+  }
+
+  try {
+    return JSON.parse(message)
+  } catch {
+    return null
+  }
 }
 
 function Particles() {
@@ -252,6 +275,92 @@ function SectionHeader({ eyebrow, title, description }) {
       <h2>{title}</h2>
       <p>{description}</p>
     </div>
+  )
+}
+
+function InstagramEmbedCard({ post, index }) {
+  const shellRef = useRef(null)
+  const frameRef = useRef(null)
+  const [frameHeight, setFrameHeight] = useState(post.embedHeight)
+
+  useEffect(() => {
+    const shell = shellRef.current
+    const frame = frameRef.current
+    if (!shell || !frame) {
+      return undefined
+    }
+
+    const updateHeight = () => {
+      const shellWidth = shell.getBoundingClientRect().width || post.embedWidth
+      const scaledHeight = Math.round((shellWidth / post.embedWidth) * post.embedHeight)
+      const nextHeight = Math.max(480, scaledHeight)
+      setFrameHeight((currentHeight) =>
+        currentHeight === nextHeight ? currentHeight : nextHeight,
+      )
+    }
+
+    updateHeight()
+
+    const observer = new ResizeObserver(updateHeight)
+    observer.observe(shell)
+
+    const handleMessage = (event) => {
+      if (event.origin !== 'https://www.instagram.com') {
+        return
+      }
+
+      if (event.source !== frame.contentWindow) {
+        return
+      }
+
+      const payload = parseInstagramEmbedMessage(event.data)
+      if (payload?.type !== 'MEASURE') {
+        return
+      }
+
+      const nextHeight = Math.max(480, Number(payload.details?.height) || 0)
+      setFrameHeight((currentHeight) =>
+        currentHeight === nextHeight ? currentHeight : nextHeight,
+      )
+    }
+
+    window.addEventListener('message', handleMessage)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('message', handleMessage)
+    }
+  }, [post.embedHeight, post.embedWidth])
+
+  return (
+    <motion.article
+      className="glass-card update-card"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+    >
+      <div ref={shellRef} className="update-embed-shell">
+        <iframe
+          ref={frameRef}
+          className="update-embed-frame"
+          title={`${post.title} Instagram embed`}
+          src={getInstagramEmbedFrameUrl(post.href)}
+          loading="lazy"
+          scrolling="no"
+          allowFullScreen
+          style={{ height: `${frameHeight}px` }}
+        />
+      </div>
+      <a
+        className="inline-link update-embed-link"
+        href={post.href}
+        target="_blank"
+        rel="noreferrer"
+      >
+        View on Instagram <ExternalLink size={16} />
+      </a>
+    </motion.article>
   )
 }
 
@@ -634,36 +743,6 @@ function Updates() {
     }
   }, [])
 
-  useEffect(() => {
-    if (posts.length === 0) {
-      return undefined
-    }
-
-    const processEmbeds = () => {
-      window.instgrm?.Embeds?.process?.()
-    }
-
-    if (window.instgrm?.Embeds?.process) {
-      processEmbeds()
-      return undefined
-    }
-
-    let script = document.getElementById(instagramEmbedScriptId)
-    if (!script) {
-      script = document.createElement('script')
-      script.id = instagramEmbedScriptId
-      script.async = true
-      script.src = 'https://www.instagram.com/embed.js'
-      document.body.appendChild(script)
-    }
-
-    script.addEventListener('load', processEmbeds)
-
-    return () => {
-      script?.removeEventListener('load', processEmbeds)
-    }
-  }, [posts])
-
   return (
     <section id="updates" className="section">
       <div className="container">
@@ -675,28 +754,7 @@ function Updates() {
 
         <div className="updates-grid">
           {posts.map((post, index) => (
-            <motion.article
-              key={post.href}
-              className="glass-card update-card"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
-            >
-              <div className="update-embed-shell">
-                <blockquote
-                  className="instagram-media"
-                  data-instgrm-captioned="true"
-                  data-instgrm-permalink={getInstagramEmbedPermalink(post.href)}
-                  data-instgrm-version="14"
-                  cite={post.href}
-                >
-                  <a href={post.href} target="_blank" rel="noreferrer">
-                    View {post.title} on Instagram
-                  </a>
-                </blockquote>
-              </div>
-            </motion.article>
+            <InstagramEmbedCard key={post.href} post={post} index={index} />
           ))}
         </div>
       </div>

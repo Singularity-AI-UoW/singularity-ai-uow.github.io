@@ -2,15 +2,21 @@
   "posts": [
     {
       "title": "International Women's Day reel",
-      "href": "https://www.instagram.com/reel/DVmugzek94K/"
+      "href": "https://www.instagram.com/reel/DVmugzek94K/",
+      "embedWidth": 360,
+      "embedHeight": 884
     },
     {
       "title": "Club day update",
-      "href": "https://www.instagram.com/p/DVcAjXIE3IM/"
+      "href": "https://www.instagram.com/p/DVcAjXIE3IM/",
+      "embedWidth": 360,
+      "embedHeight": 663
     },
     {
       "title": "Global Game Jam project spotlight",
-      "href": "https://www.instagram.com/p/DUpuTP2ER5B/"
+      "href": "https://www.instagram.com/p/DUpuTP2ER5B/",
+      "embedWidth": 360,
+      "embedHeight": 510
     }
   ]
 }
