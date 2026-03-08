@@ -97,41 +97,23 @@ const eventFormats = [
   },
 ]
 
-const instagramPosts = [
+const fallbackInstagramPosts = [
   {
     title: 'International Women\'s Day reel',
-    label: 'Reel',
-    date: 'March 8, 2026',
-    excerpt:
-      'A club reel celebrating the women researching, building, and leading in AI.',
-    image: '/updates/womens-day-2026.jpg',
-    width: 1080,
-    height: 1350,
     href: 'https://www.instagram.com/reel/DVmugzek94K/',
   },
   {
     title: 'Club day update',
-    label: 'Announcement',
-    date: 'March 4, 2026',
-    excerpt:
-      'A quick update explaining the club day cancellation and where new event notices will appear first.',
-    image: '/updates/club-day-update-2026.jpg',
-    width: 1080,
-    height: 795,
     href: 'https://www.instagram.com/p/DVcAjXIE3IM/',
   },
   {
     title: 'Global Game Jam project spotlight',
-    label: 'Project',
-    date: 'February 12, 2026',
-    excerpt:
-      'A preview of Faceon, the team\'s 2026 Global Game Jam build, shared as a club project highlight.',
-    image: '/updates/faceon-2026.jpg',
-    width: 2160,
-    height: 1215,
     href: 'https://www.instagram.com/p/DUpuTP2ER5B/',
   },
 ]
+
+const instagramFeedEndpoint = '/instagram-posts.json'
+const instagramEmbedScriptId = 'instagram-embed-script'
 
 const resources = [
   {
@@ -201,6 +183,17 @@ const joinBenefits = [
   'Find collaborators for prototypes, jams, and portfolio work.',
   'Share experiments early and improve them while they are still rough.',
 ]
+
+function isValidInstagramPost(post) {
+  return typeof post?.href === 'string' && post.href.startsWith('https://www.instagram.com/')
+}
+
+function getInstagramEmbedPermalink(href) {
+  const permalink = new URL(href)
+  permalink.searchParams.set('utm_source', 'ig_embed')
+  permalink.searchParams.set('utm_campaign', 'loading')
+  return permalink.toString()
+}
 
 function Particles() {
   const [particles] = useState(() =>
@@ -601,46 +594,107 @@ function Events() {
 }
 
 function Updates() {
+  const [posts, setPosts] = useState(fallbackInstagramPosts)
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    async function loadPosts() {
+      try {
+        const response = await fetch(instagramFeedEndpoint, {
+          cache: 'no-store',
+          signal: controller.signal,
+        })
+
+        if (!response.ok) {
+          throw new Error(`Instagram feed returned ${response.status}`)
+        }
+
+        const payload = await response.json()
+
+        if (!Array.isArray(payload?.posts)) {
+          throw new Error('Instagram feed did not include a posts array')
+        }
+
+        const latestPosts = payload.posts.filter(isValidInstagramPost)
+        if (latestPosts.length > 0) {
+          setPosts(latestPosts)
+        }
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          console.warn('Falling back to bundled Instagram post URLs.', error)
+        }
+      }
+    }
+
+    loadPosts()
+
+    return () => {
+      controller.abort()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (posts.length === 0) {
+      return undefined
+    }
+
+    const processEmbeds = () => {
+      window.instgrm?.Embeds?.process?.()
+    }
+
+    if (window.instgrm?.Embeds?.process) {
+      processEmbeds()
+      return undefined
+    }
+
+    let script = document.getElementById(instagramEmbedScriptId)
+    if (!script) {
+      script = document.createElement('script')
+      script.id = instagramEmbedScriptId
+      script.async = true
+      script.src = 'https://www.instagram.com/embed.js'
+      document.body.appendChild(script)
+    }
+
+    script.addEventListener('load', processEmbeds)
+
+    return () => {
+      script?.removeEventListener('load', processEmbeds)
+    }
+  }, [posts])
+
   return (
     <section id="updates" className="section">
       <div className="container">
         <SectionHeader
           eyebrow="Latest updates"
-          title="Instagram posts at their original proportions"
-          description="Recent club announcements, project spotlights, and community moments from Instagram."
+          title="Live Instagram updates"
+          description="Recent posts are embedded directly from Instagram, so each post keeps its own layout and height."
         />
 
         <div className="updates-grid">
-          {instagramPosts.map((post, index) => (
+          {posts.map((post, index) => (
             <motion.article
-              key={post.title}
+              key={post.href}
               className="glass-card update-card"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
             >
-              <div
-                className="update-media"
-                style={{ aspectRatio: `${post.width} / ${post.height}` }}
-              >
-                <img src={post.image} alt={post.title} loading="lazy" />
-              </div>
-              <div className="update-body">
-                <div className="update-meta">
-                  <span className="tag">{post.label}</span>
-                  <span>{post.date}</span>
-                </div>
-                <h3>{post.title}</h3>
-                <p>{post.excerpt}</p>
-                <a
-                  className="inline-link"
-                  href={post.href}
-                  target="_blank"
-                  rel="noreferrer"
+              <div className="update-embed-shell">
+                <blockquote
+                  className="instagram-media"
+                  data-instgrm-captioned="true"
+                  data-instgrm-permalink={getInstagramEmbedPermalink(post.href)}
+                  data-instgrm-version="14"
+                  cite={post.href}
                 >
-                  View on Instagram <ExternalLink size={16} />
-                </a>
+                  <a href={post.href} target="_blank" rel="noreferrer">
+                    View {post.title} on Instagram
+                  </a>
+                </blockquote>
               </div>
             </motion.article>
           ))}

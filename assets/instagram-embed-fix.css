@@ -1,0 +1,46 @@
+#updates .updates-grid {
+  column-count: 3;
+  column-gap: 1.5rem;
+}
+
+#updates .update-card {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 1.5rem;
+  overflow: hidden;
+  padding: 1rem;
+  break-inside: avoid;
+}
+
+#updates .update-embed-shell {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#updates .update-embed-shell .instagram-media {
+  width: 100%;
+  min-width: 0 !important;
+  max-width: 540px !important;
+  margin: 0 !important;
+}
+
+#updates .update-embed-shell iframe {
+  max-width: 100%;
+}
+
+@media (max-width: 1040px) {
+  #updates .updates-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 760px) {
+  #updates .updates-grid {
+    column-count: 1;
+  }
+
+  #updates .update-card {
+    padding: 0.8rem;
+  }
+}
