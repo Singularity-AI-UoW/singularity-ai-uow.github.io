@@ -6,8 +6,10 @@ import {
   Bot,
   Brain,
   CalendarDays,
+  Clock3,
   Code2,
   ExternalLink,
+  Image,
   MapPin,
   Menu,
   Sparkles,
@@ -28,145 +30,181 @@ const eventSchedule = [
   {
     month: 'March',
     dateLabel: '20 March 2026',
-    title: 'Kickoff + On-ramp Demo',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Club Kickoff: Build Your First AI Demo',
     summary:
-      'Participants build a working AI demo and leave with clear next steps for getting involved, with minimal technical barriers.',
+      'Participants build a working AI demo and leave with clear next steps for getting involved in the club. The session stays beginner-friendly through a guided Colab workflow, while returning members can explore optional extensions in a deeper core lane.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'March',
     dateLabel: '27 March 2026',
-    title: 'Social + Lightning Intros',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Club Social: AI Interests Night',
     summary:
-      'Members meet peers, surface shared interests, and shape future events through structured introductions and topic clustering.',
+      'This structured social helps members meet peers, find shared interests, and shape the direction of upcoming club events. Expect guided introductions, themed discussion groups, and clear ways to volunteer for future projects or sessions.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'April',
     dateLabel: '10 April 2026',
+    timeLabel: '6:00 pm - 8:00 pm',
     title: 'Model Basics Workshop',
     summary:
-      'Beginners learn data splits and metrics while returning members improve model baselines in a deeper core lane.',
+      'Members learn the practical foundations of modelling through a notebook-first workshop focused on splits, metrics, and overfitting. Beginners get a clear introduction without heavy maths, while the core lane tests stronger baselines and compares what actually improves results.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'April',
     dateLabel: '24 April 2026',
-    title: 'Git, Colab + Hugging Face Basics',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Tooling Workshop: Git, Colab & Hugging Face',
     summary:
-      'Attendees clone a repo, run a notebook, and load a model for inference as a practical workflow setup session.',
+      'This is a hands-on tooling session where attendees clone a repo, run a notebook, and use a Hugging Face model for inference. The goal is to make the club workflow feel approachable, with live examples and troubleshooting support built into the session.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'May',
     dateLabel: '8 May 2026',
-    title: 'Kaggle Lite',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Kaggle Mini Challenge',
     summary:
-      'Teams start from a baseline notebook and iterate toward better scores, learning how to test improvements without heavy setup overhead.',
+      'Teams start from a known-good baseline and work toward measurable score improvements in a low-friction challenge format. The session emphasizes iteration, evaluation, and teamwork so members can learn the competition loop without getting blocked by setup.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'May',
     dateLabel: '22 May 2026',
-    title: 'Paper Story Night',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Paper Story Night: A Classic AI Paper',
     summary:
-      'Members learn to explain a classic paper\'s problem, core idea, main result, and limitations in plain language.',
+      'This session turns a classic AI paper into a clear story about the problem, the main idea, the key result, and the limitations. It is designed to stay approachable for beginners while still giving more advanced members room for deeper discussion afterward.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'June',
     dateLabel: '5 June 2026',
-    title: 'Campus Helper Bot Mini-hackathon',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Mini Hackathon: Campus Helper Bot',
     summary:
-      'Teams build a demo that solves a real campus problem and leave with something concrete to present.',
+      'Teams build a small demo that solves a real campus problem, using templates and judging criteria that keep the hackathon accessible. The focus is on shipping something real, presenting it clearly, and giving teams a path to continue the project afterward.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'June',
     dateLabel: '19 June 2026',
-    title: 'Research Talk',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Guest Research Talk',
     summary:
-      'Members get an accessible view of real AI research or industry work, with enough context for beginner questions.',
+      'A guest speaker will share a real research or industry perspective on AI in a way that stays accessible to newer members. The event is structured to support good questions, clear takeaways, and follow-up discussion after the talk.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'July',
     dateLabel: '3 July 2026',
-    title: 'Debug Night',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Debug Night: Reading Errors & Fixing Bugs',
     summary:
-      'Beginners practise a repeatable debugging process while core members work through real ML and development failures.',
+      'This workshop teaches a repeatable debugging process through real examples like traceback issues, dependency conflicts, and broken notebooks. Beginners get confidence with the basics, while the core lane works through harder ML and tooling failures in groups.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'July',
     dateLabel: '17 July 2026',
-    title: 'Diffusion Models Explained',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Paper Story Night: Diffusion Models',
     summary:
-      'Members build intuition for diffusion, where it works well, and the tradeoffs that matter most in practice.',
+      'Members build intuition for diffusion models through diagrams, examples, and guided discussion instead of heavy equations. The session explains what diffusion is useful for, where it breaks down, and why it matters in current AI workflows.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'July',
     dateLabel: '31 July 2026',
-    title: 'Diffusion Build-along',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Build Along: Try a Diffusion Pipeline',
     summary:
-      'Attendees run a working diffusion pipeline and change key settings to see how outputs shift in practice.',
+      'Attendees run a working diffusion pipeline and then change one variable at a time to see how outputs shift in practice. The session is designed to make experimentation feel tangible, with side-by-side comparisons and fallback outputs ready if runtime issues appear.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'August',
     dateLabel: '14 August 2026',
-    title: 'Serving Basics + Local Inference',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Serving Workshop: Basics, vLLM & Ollama',
     summary:
-      'Beginners learn what model serving means, while the core track explores performance and deployment tradeoffs.',
+      'This workshop introduces model serving through a beginner-safe on-ramp and a more technical core track. Members learn the practical tradeoffs around latency, throughput, and local deployment tools like vLLM and Ollama.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'August',
     dateLabel: '28 August 2026',
-    title: 'Debate Night: AI in Society',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'AI in Society Debate Night',
     summary:
-      'Members practise structured, balanced discussion about AI\'s social impact instead of defaulting to hot takes.',
+      'The debate night gives members a structured format for discussing AI\'s impact on society without drifting into hot takes. Small teams, timed rounds, and audience questions keep the session inclusive, evidence-based, and reflective.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'September',
     dateLabel: '11 September 2026',
-    title: 'Project Night: Website / OpenClaw',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Project Showcase: Website & OpenClaw',
     summary:
-      'Members demo real progress, recruit collaborators, and make it easier for others to join active club projects.',
+      'This showcase night puts active club projects in front of the wider membership so teams can demo progress and recruit collaborators. Each project is expected to show something concrete and leave with clear next steps that new contributors can join.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'September',
     dateLabel: '25 September 2026',
-    title: 'Fine-tuning Night',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Fine-Tuning Night: Concepts + LoRA',
     summary:
-      'Beginners compare fine-tuning with prompting and RAG, while the core lane tries a small LoRA fine-tune.',
+      'Members compare prompting, RAG, and fine-tuning before the core lane runs a small LoRA workflow end to end. The event is structured to keep the conceptual path clear for beginners while still giving hands-on depth to members ready to experiment.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'October',
     dateLabel: '9 October 2026',
-    title: 'Ethics and Failure Modes',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'AI Safety & Failure Modes',
     summary:
-      'Members work through real risks such as bias, hallucination, privacy, and misuse, then plan practical mitigations.',
+      'This session explores real AI risks such as hallucination, bias, privacy, and prompt injection through case studies and practical worksheets. Members leave with a stronger sense of how to spot failure modes and design realistic mitigations for their own projects.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'October',
     dateLabel: '23 October 2026',
-    title: 'Kaggle Challenge Day',
+    timeLabel: '6:00 pm - 11:00 pm',
+    title: 'Kaggle Year-end Hackathon',
     summary:
-      'Teams make live Kaggle submissions, iterate from a baseline, and learn the full competition loop from setup to score improvement.',
+      'This longer-format Kaggle event is designed to feel like a real competition while still staying beginner-safe through strong scaffolding and checkpoints. Teams make real submissions, iterate on their ideas, and present what worked, what failed, and what they learned.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
     month: 'November',
     dateLabel: '6 November 2026',
-    title: 'Showcase Night + Awards',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'Year-End Showcase & Awards',
     summary:
-      'Members present what they built, celebrate progress, and close the year with awards across beginner and technical categories.',
+      'The year-end showcase celebrates what members built across the year through short demos, fast presentations, and awards. It is meant to recognize progress at every skill level while closing the calendar with a strong sense of momentum for next year.',
+    imageSrc: '',
     location: 'University of Waikato, Hamilton Campus',
   },
 ]
@@ -529,22 +567,28 @@ function Events() {
                 onFocus={() => setActiveEvent(event)}
                 tabIndex={0}
                 role="listitem"
-              >
-                <div className="event-list-meta">
-                  <span className="tag">{event.month}</span>
-                  <span className="event-date">
-                    <CalendarDays size={16} />
-                    {event.dateLabel}
-                  </span>
-                </div>
-                <h3>{event.title}</h3>
-                <div className="event-location">
-                  <MapPin size={16} />
-                  <span>{event.location}</span>
-                </div>
-              </motion.article>
-            ))}
-          </div>
+                >
+                  <div className="event-list-meta">
+                    <span className="tag">{event.month}</span>
+                    <span className="event-date">
+                      <CalendarDays size={16} />
+                      {event.dateLabel}
+                    </span>
+                  </div>
+                  <h3>{event.title}</h3>
+                  <div className="event-list-facts">
+                    <div className="event-fact">
+                      <Clock3 size={16} />
+                      <span>{event.timeLabel}</span>
+                    </div>
+                    <div className="event-fact">
+                      <MapPin size={16} />
+                      <span>{event.location}</span>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
 
           <motion.aside
             key={activeEvent.title}
@@ -552,24 +596,29 @@ function Events() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25 }}
-          >
-            <span className="eyebrow">Event overview</span>
-            <div className="event-top">
-              <span className="tag">{activeEvent.month}</span>
-              <span className="event-date">
-                <CalendarDays size={16} />
-                {activeEvent.dateLabel}
-              </span>
-            </div>
-            <h3>{activeEvent.title}</h3>
-            <p className="event-summary">{activeEvent.summary}</p>
-            <div className="event-location">
-              <MapPin size={16} />
-              <span>{activeEvent.location}</span>
-            </div>
-          </motion.aside>
+            >
+              <span className="eyebrow">Event overview</span>
+              {activeEvent.imageSrc ? (
+                <img
+                  className="event-preview-image"
+                  src={activeEvent.imageSrc}
+                  alt={`${activeEvent.title} preview`}
+                />
+              ) : (
+                <div
+                  className="event-preview-placeholder"
+                  role="img"
+                  aria-label={`${activeEvent.title} preview placeholder`}
+                >
+                  <Image size={28} />
+                  <span>Event preview image placeholder</span>
+                </div>
+              )}
+              <h3>{activeEvent.title}</h3>
+              <p className="event-summary">{activeEvent.summary}</p>
+            </motion.aside>
+          </div>
         </div>
-      </div>
     </section>
   )
 }

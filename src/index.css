@@ -677,20 +677,24 @@ section[id] {
   margin-bottom: 0;
 }
 
+.event-list-facts {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.event-fact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 .event-detail {
   display: grid;
   gap: 1rem;
   min-height: 100%;
   padding: 1.7rem;
-}
-
-.event-top {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.8rem;
-  align-items: center;
-  margin-bottom: 1rem;
 }
 
 .event-date {
@@ -708,7 +712,7 @@ section[id] {
 }
 
 .event-summary {
-  margin-bottom: 1.2rem;
+  margin-bottom: 0;
 }
 
 .event-location {
@@ -718,6 +722,40 @@ section[id] {
   margin-top: auto;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.event-preview-image,
+.event-preview-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 20px;
+}
+
+.event-preview-image {
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.event-preview-placeholder {
+  display: grid;
+  place-items: center;
+  gap: 0.65rem;
+  padding: 1.2rem;
+  text-align: center;
+  color: var(--muted);
+  background:
+    linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(124, 58, 237, 0.08)),
+    rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+}
+
+.event-preview-placeholder svg {
+  color: var(--primary);
+}
+
+.event-preview-placeholder span {
+  max-width: 20rem;
+  font-size: 0.95rem;
 }
 
 .exec-grid {
