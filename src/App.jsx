@@ -34,7 +34,7 @@ const eventSchedule = [
     title: 'Club Kickoff: Build Your First AI Demo',
     summary:
       'Participants build a working AI demo and leave with clear next steps for getting involved in the club. The session stays beginner-friendly through a guided Colab workflow, while returning members can explore optional extensions in a deeper core lane.',
-    imageSrc: '',
+    imageSrc: '/20_03_26.png',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
@@ -44,7 +44,7 @@ const eventSchedule = [
     title: 'Club Social: AI Interests Night',
     summary:
       'This structured social helps members meet peers, find shared interests, and shape the direction of upcoming club events. Expect guided introductions, themed discussion groups, and clear ways to volunteer for future projects or sessions.',
-    imageSrc: '',
+    imageSrc: '27_03_26.png',
     location: 'University of Waikato, Hamilton Campus',
   },
   {
