@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "sync:instagram": "node scripts/sync-instagram-feed.mjs",
+    "predev": "npm run sync:instagram",
+    "prebuild": "npm run sync:instagram",
     "dev": "vite --open /site.html",
     "build": "vite build && node scripts/publish-root.mjs",
     "preview": "vite preview --open /site.html",

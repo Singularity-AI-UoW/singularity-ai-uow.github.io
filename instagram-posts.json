@@ -1,22 +1,24 @@
 {
+  "username": "singularity_uow",
+  "generatedAt": "2026-03-09T04:17:50.498Z",
   "posts": [
     {
-      "title": "International Women's Day reel",
+      "title": "Instagram reel from 2026-03-08",
+      "href": "https://www.instagram.com/reel/DVnK2rRk4Nn/",
+      "embedWidth": 360,
+      "embedHeight": 884
+    },
+    {
+      "title": "Instagram reel from 2026-03-08",
       "href": "https://www.instagram.com/reel/DVmugzek94K/",
       "embedWidth": 360,
       "embedHeight": 884
     },
     {
-      "title": "Club day update",
+      "title": "Instagram post from 2026-03-03",
       "href": "https://www.instagram.com/p/DVcAjXIE3IM/",
       "embedWidth": 360,
-      "embedHeight": 663
-    },
-    {
-      "title": "Global Game Jam project spotlight",
-      "href": "https://www.instagram.com/p/DUpuTP2ER5B/",
-      "embedWidth": 360,
-      "embedHeight": 510
+      "embedHeight": 620
     }
   ]
 }

@@ -1,6 +1,6 @@
-# Singularity AI Club Website
+# Singularity Website
 
-Modern, interactive website for the University of Waikato AI Club.
+Website for Singularity, the University of Waikato AI Club.
 
 ## Features
 
@@ -12,13 +12,12 @@ Modern, interactive website for the University of Waikato AI Club.
   - Live Instagram embed iframes sized to each post
 - **Sections**:
   - Hero with call-to-action
-  - About (Learn, Build, Connect)
-  - Build tracks and project themes
-  - Events and activity overview
+  - About section
+  - 2026 events calendar with playbook summaries
   - Instagram updates section
-  - Join membership call-to-action
+  - Executive team section
   - Resources library
-  - Direct contact links
+  - Footer with contact links
 - **Tech Stack**: React 18, Framer Motion, Lucide Icons, Vite
 
 ## Getting Started
@@ -33,12 +32,13 @@ npm install
 npm run dev
 ```
 Open `http://localhost:5173/site.html` in your browser.
+Starting the dev server also refreshes `public/instagram-posts.json` from the latest public Instagram posts.
 
 ### Build for Production
 ```bash
 npm run build
 ```
-This builds the site into `dist/` and then refreshes the GitHub Pages root files (`index.html` and `assets/`).
+This first refreshes `public/instagram-posts.json` from Instagram, then builds the site into `dist/`, and finally refreshes the GitHub Pages root files (`index.html` and `assets/`).
 
 ### Preview Production Build
 ```bash
@@ -57,7 +57,7 @@ npm run preview
 - **Colors**: Edit CSS variables in `src/index.css`
 - **Content**: Update section data in `src/App.jsx`
 - **Logo**: Replace `public/singularity-icon.svg`
-- **Instagram updates**: Update `public/instagram-posts.json` with the newest post URLs and measured embed sizes
+- **Instagram updates**: Run `npm run sync:instagram` to refresh `public/instagram-posts.json` from the latest public posts
 
 ## License
 

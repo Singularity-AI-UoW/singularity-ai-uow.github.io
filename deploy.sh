@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "🚀 Deploying Singularity AI Club website to GitHub Pages..."
+echo "Deploying Singularity website to GitHub Pages..."
 
 # Build the project
 npm run build
@@ -23,5 +23,5 @@ git add -A
 git commit -m "Deploy website $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to deploy"
 git push -f origin gh-pages
 
-echo "✅ Website deployed to https://singularityai.github.io"
+echo "Website deployed to https://singularityai.github.io"
 echo "   (Note: may take a few minutes to propagate)"

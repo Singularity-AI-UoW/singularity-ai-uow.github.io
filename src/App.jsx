@@ -6,12 +6,12 @@ import {
   Bot,
   Brain,
   CalendarDays,
-  ChevronRight,
   Code2,
   ExternalLink,
   Github,
   Instagram,
   Mail,
+  MapPin,
   Menu,
   Sparkles,
   Users,
@@ -19,81 +19,217 @@ import {
   Zap,
 } from 'lucide-react'
 
+const joinLink = 'https://forms.office.com/'
+
 const navItems = [
   { label: 'About', href: '#about' },
-  { label: 'Build', href: '#projects' },
+  { label: 'Executives', href: '#executives' },
   { label: 'Events', href: '#events' },
   { label: 'Updates', href: '#updates' },
-  { label: 'Join', href: '#join' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Resources', href: '#resources' },
 ]
 
 const aboutCards = [
   {
     icon: Brain,
     accent: 'var(--primary)',
-    title: 'Learn together',
+    title: 'Learn with structure',
     description:
-      'Beginner-friendly sessions make core AI ideas practical, from prompting and Python basics to model evaluation.',
-  },
-  {
-    icon: Code2,
-    accent: 'var(--secondary)',
-    title: 'Build in public',
-    description:
-      'We turn ideas into prototypes through collaborative build nights, hackathons, and student-led demos.',
+      'Singularity keeps AI approachable through guided workshops, clear follow-up, and sessions that start from first principles.',
   },
   {
     icon: Users,
-    accent: 'var(--accent)',
-    title: 'Meet your people',
+    accent: 'var(--secondary)',
+    title: 'Meet collaborators',
     description:
-      'The club is a low-pressure place to find collaborators, compare tools, and share what is actually working.',
-  },
-]
-
-const buildTracks = [
-  {
-    title: 'LLMs and agents',
-    description:
-      'Experiment with prompt design, retrieval, structured outputs, and assistant-style workflows.',
-    status: 'Current focus',
-    tags: ['Prompting', 'RAG', 'Interfaces'],
-  },
-  {
-    title: 'Vision and robotics',
-    description:
-      'Prototype with computer vision, sensors, and edge hardware for projects that can move beyond the screen.',
-    status: 'Hands-on',
-    tags: ['CV', 'Edge AI', 'Robotics'],
-  },
-  {
-    title: 'Creative AI and game jams',
-    description:
-      'Use generative tools, playful experiments, and rapid jam cycles to learn by shipping something memorable.',
-    status: 'Club favourite',
-    tags: ['Game Jam', 'Media', 'Prototyping'],
-  },
-]
-
-const eventFormats = [
-  {
-    icon: CalendarDays,
-    title: 'Workshop sessions',
-    description:
-      'Short guided sessions that introduce a tool, concept, or workflow without assuming everyone starts at the same level.',
-  },
-  {
-    icon: Zap,
-    title: 'Project sprints',
-    description:
-      'Build nights focused on momentum: pick an idea, prototype quickly, and get feedback while it is still easy to change.',
+      'The club gives students a place to compare tools, find teammates, and keep ideas moving after the first conversation.',
   },
   {
     icon: Sparkles,
-    title: 'Show and tell',
+    accent: 'var(--accent)',
+    title: 'Stay current',
     description:
-      'Casual demos, guest speakers, and end-of-trimester showcases that turn learning into something visible.',
+      'Events, Instagram updates, and shared resources make it easier to stay involved across the whole year.',
+  },
+]
+
+const executiveRoles = [
+  {
+    role: 'President',
+    name: 'Kang Zhou',
+    photoName: 'kang-zhou',
+    summary:
+      'Owns direction, partnerships, and the overall rhythm of the club year.',
+  },
+  {
+    role: 'Content Creator',
+    name: 'Chianne Lyford Shields',
+    photoName: 'chianne-lyford-shields',
+    summary:
+      'Supports content delivery across events, operations, and taking photo and video for the club.',
+  },
+  {
+    role: 'Secretary',
+    name: 'Andrew Lin',
+    photoName: 'andrew-lin',
+    summary:
+      'Keeps communication, records, and follow-up organised so members know what is happening next.',
+  },
+  {
+    role: 'Treasurer',
+    name: 'Alex Noble',
+    photoName: 'alex-noble',
+    summary:
+      'Looks after budgeting, approvals, and the practical resourcing behind club activity.',
+  },
+]
+
+const executivePhotoExtensions = ['jpg', 'jpeg', 'png', 'webp']
+
+const eventSchedule = [
+  {
+    month: 'March',
+    dateLabel: '20 March 2026',
+    title: 'Kickoff + On-ramp Demo',
+    summary:
+      'Participants build a working AI demo and leave with clear next steps for getting involved, with minimal technical barriers.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'March',
+    dateLabel: '27 March 2026',
+    title: 'Social + Lightning Intros',
+    summary:
+      'Members meet peers, surface shared interests, and shape future events through structured introductions and topic clustering.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'April',
+    dateLabel: '10 April 2026',
+    title: 'Model Basics Workshop',
+    summary:
+      'Beginners learn data splits and metrics while returning members improve model baselines in a deeper core lane.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'April',
+    dateLabel: '24 April 2026',
+    title: 'Git, Colab + Hugging Face Basics',
+    summary:
+      'Attendees clone a repo, run a notebook, and load a model for inference as a practical workflow setup session.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'May',
+    dateLabel: '8 May 2026',
+    title: 'Kaggle Lite',
+    summary:
+      'Teams start from a baseline notebook and iterate toward better scores, learning how to test improvements without heavy setup overhead.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'May',
+    dateLabel: '22 May 2026',
+    title: 'Paper Story Night',
+    summary:
+      'Members learn to explain a classic paper\'s problem, core idea, main result, and limitations in plain language.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'June',
+    dateLabel: '5 June 2026',
+    title: 'Campus Helper Bot Mini-hackathon',
+    summary:
+      'Teams build a demo that solves a real campus problem and leave with something concrete to present.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'June',
+    dateLabel: '19 June 2026',
+    title: 'Research Talk',
+    summary:
+      'Members get an accessible view of real AI research or industry work, with enough context for beginner questions.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'July',
+    dateLabel: '3 July 2026',
+    title: 'Debug Night',
+    summary:
+      'Beginners practise a repeatable debugging process while core members work through real ML and development failures.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'July',
+    dateLabel: '17 July 2026',
+    title: 'Diffusion Models Explained',
+    summary:
+      'Members build intuition for diffusion, where it works well, and the tradeoffs that matter most in practice.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'July',
+    dateLabel: '31 July 2026',
+    title: 'Diffusion Build-along',
+    summary:
+      'Attendees run a working diffusion pipeline and change key settings to see how outputs shift in practice.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'August',
+    dateLabel: '14 August 2026',
+    title: 'Serving Basics + Local Inference',
+    summary:
+      'Beginners learn what model serving means, while the core track explores performance and deployment tradeoffs.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'August',
+    dateLabel: '28 August 2026',
+    title: 'Debate Night: AI in Society',
+    summary:
+      'Members practise structured, balanced discussion about AI\'s social impact instead of defaulting to hot takes.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'September',
+    dateLabel: '11 September 2026',
+    title: 'Project Night: Website / OpenClaw',
+    summary:
+      'Members demo real progress, recruit collaborators, and make it easier for others to join active club projects.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'September',
+    dateLabel: '25 September 2026',
+    title: 'Fine-tuning Night',
+    summary:
+      'Beginners compare fine-tuning with prompting and RAG, while the core lane tries a small LoRA fine-tune.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'October',
+    dateLabel: '9 October 2026',
+    title: 'Ethics and Failure Modes',
+    summary:
+      'Members work through real risks such as bias, hallucination, privacy, and misuse, then plan practical mitigations.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'October',
+    dateLabel: '23 October 2026',
+    title: 'Kaggle Challenge Day',
+    summary:
+      'Teams make live Kaggle submissions, iterate from a baseline, and learn the full competition loop from setup to score improvement.',
+    location: 'University of Waikato, Hamilton Campus',
+  },
+  {
+    month: 'November',
+    dateLabel: '6 November 2026',
+    title: 'Showcase Night + Awards',
+    summary:
+      'Members present what they built, celebrate progress, and close the year with awards across beginner and technical categories.',
+    location: 'University of Waikato, Hamilton Campus',
   },
 ]
 
@@ -161,32 +297,20 @@ const resources = [
 
 const contactLinks = [
   {
-    title: 'Instagram',
-    description: '@singularity_uow',
+    label: 'Instagram',
     href: 'https://www.instagram.com/singularity_uow/',
-    icon: Instagram,
     external: true,
   },
   {
-    title: 'GitHub',
-    description: 'Singularity-AI-UoW',
+    label: 'GitHub',
     href: 'https://github.com/Singularity-AI-UoW',
-    icon: Github,
     external: true,
   },
   {
-    title: 'Email',
-    description: 'hello@singularityai.club',
-    href: 'mailto:hello@singularityai.club',
-    icon: Mail,
+    label: 'Email',
+    href: 'mailto:singularity@clubs.wsu.org.nz',
     external: false,
   },
-]
-
-const joinBenefits = [
-  'Learn the tooling with other students, not in isolation.',
-  'Find collaborators for prototypes, jams, and portfolio work.',
-  'Share experiments early and improve them while they are still rough.',
 ]
 
 function isValidInstagramPost(post) {
@@ -218,9 +342,18 @@ function parseInstagramEmbedMessage(message) {
   }
 }
 
+function getInitials(name) {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() || '')
+    .join('')
+}
+
 function Particles() {
   const [particles] = useState(() =>
-    Array.from({ length: 18 }, (_, index) => ({
+    Array.from({ length: 16 }, (_, index) => ({
       id: index,
       size: Math.random() * 4 + 2,
       x: `${Math.random() * 100}%`,
@@ -274,6 +407,42 @@ function SectionHeader({ eyebrow, title, description }) {
       {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
       <h2>{title}</h2>
       <p>{description}</p>
+    </div>
+  )
+}
+
+function ExecutivePhoto({ member }) {
+  const [photoIndex, setPhotoIndex] = useState(0)
+  const [isMissing, setIsMissing] = useState(!member.photoName)
+
+  const photoSrc =
+    !isMissing && member.photoName
+      ? `/executives/${member.photoName}.${executivePhotoExtensions[photoIndex]}`
+      : null
+
+  const handleError = () => {
+    const nextIndex = photoIndex + 1
+    if (nextIndex < executivePhotoExtensions.length) {
+      setPhotoIndex(nextIndex)
+      return
+    }
+
+    setIsMissing(true)
+  }
+
+  return (
+    <div className="exec-photo-frame">
+      {photoSrc ? (
+        <img
+          src={photoSrc}
+          alt={`Portrait of ${member.name}`}
+          className="exec-photo"
+          loading="lazy"
+          onError={handleError}
+        />
+      ) : (
+        <div className="exec-photo-fallback">{getInitials(member.name)}</div>
+      )}
     </div>
   )
 }
@@ -388,6 +557,7 @@ function Navigation() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
+
     return () => {
       document.body.style.overflow = ''
     }
@@ -399,10 +569,10 @@ function Navigation() {
     <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
         <a href="#top" className="logo" onClick={closeMenu}>
-          <img src="/singularity-icon.svg" alt="Singularity AI" />
+          <img src="/singularity-icon.svg" alt="Singularity" />
           <div className="logo-copy">
-            <strong>Singularity AI</strong>
-            <span>University of Waikato</span>
+            <strong>Singularity</strong>
+            <span>University of Waikato AI Club</span>
           </div>
         </a>
 
@@ -414,14 +584,6 @@ function Navigation() {
               </li>
             ))}
           </ul>
-          <a
-            className="btn btn-outline nav-cta"
-            href="https://www.instagram.com/singularity_uow/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Follow us <ExternalLink size={16} />
-          </a>
         </div>
 
         <button
@@ -429,7 +591,7 @@ function Navigation() {
           className="nav-toggle"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((open) => !open)}
+          onClick={() => setMenuOpen((current) => !current)}
         >
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -455,15 +617,6 @@ function Navigation() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  className="btn btn-primary"
-                  href="https://www.instagram.com/singularity_uow/"
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={closeMenu}
-                >
-                  Follow on Instagram <ExternalLink size={16} />
-                </a>
               </div>
             </div>
           </motion.div>
@@ -477,6 +630,7 @@ function Hero() {
   return (
     <section className="hero" id="top">
       <Particles />
+
       <div className="container hero-shell">
         <motion.div
           className="hero-copy"
@@ -484,29 +638,26 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <span className="eyebrow">University of Waikato AI student club</span>
-          <h1>
-            Learn AI by
-            <span>building with people.</span>
-          </h1>
+          <span className="eyebrow">University of Waikato AI Club</span>
+          <h1>Singularity</h1>
           <p>
-            Singularity AI is a student club for experimenting with modern AI
-            tools, sharing ideas, and turning curiosity into projects that
-            actually ship.
+            Singularity is a student-led AI club focused on practical workshops,
+            thoughtful discussion, and projects that members can actually show.
           </p>
+
           <div className="hero-actions">
-            <a href="#join" className="btn btn-primary">
-              Join the club <ArrowRight size={18} />
+            <a
+              href={joinLink}
+              className="btn btn-primary"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Join Singularity <ArrowRight size={18} />
             </a>
-            <a href="#updates" className="btn btn-outline">
-              See latest updates <ChevronRight size={18} />
+            <a href="#events" className="btn btn-outline">
+              View 2026 events <CalendarDays size={18} />
             </a>
           </div>
-          <ul className="hero-highlights">
-            <li>Beginner-friendly workshops</li>
-            <li>Build nights and demos</li>
-            <li>Project-first learning</li>
-          </ul>
         </motion.div>
 
         <motion.aside
@@ -517,41 +668,26 @@ function Hero() {
         >
           <div className="panel-badge">
             <Sparkles size={16} />
-            What the club feels like
+            What to expect
           </div>
-          <h2>Low ego. High signal. Lots of building.</h2>
+          <h2>A full year of practical AI events.</h2>
           <p>
-            The goal is simple: make AI feel approachable, practical, and worth
-            doing well.
+            From March to November, Singularity mixes on-ramps, project nights,
+            talks, socials, and a showcase that keeps the year connected.
           </p>
 
-          <div className="panel-list">
-            <div className="panel-item">
-              <div className="panel-icon">
-                <BookOpen size={18} />
-              </div>
-              <div>
-                <strong>Learn the fundamentals</strong>
-                <span>Workshops that explain the why, not only the clicks.</span>
-              </div>
+          <div className="hero-stat-grid">
+            <div className="hero-stat">
+              <strong>{eventSchedule.length}</strong>
+              <span>planned events</span>
             </div>
-            <div className="panel-item">
-              <div className="panel-icon">
-                <Code2 size={18} />
-              </div>
-              <div>
-                <strong>Prototype fast</strong>
-                <span>Test ideas quickly, then keep the ones that survive contact.</span>
-              </div>
+            <div className="hero-stat">
+              <strong>Mar-Nov</strong>
+              <span>from kickoff to showcase</span>
             </div>
-            <div className="panel-item">
-              <div className="panel-icon">
-                <Users size={18} />
-              </div>
-              <div>
-                <strong>Share the work</strong>
-                <span>Demo what you are trying, get feedback, and keep iterating.</span>
-              </div>
+            <div className="hero-stat">
+              <strong>Beginner Friendly</strong>
+              <span>with room to go deeper</span>
             </div>
           </div>
         </motion.aside>
@@ -566,8 +702,8 @@ function About() {
       <div className="container">
         <SectionHeader
           eyebrow="About"
-          title="A club built around practical AI learning"
-          description="We learn AI through workshops, experiments, and collaborative projects that help students move from theory to practice."
+          title="What Singularity is for"
+          description="Singularity is designed to help students get into AI, stay engaged, and keep momentum between events."
         />
 
         <div className="grid-3">
@@ -593,39 +729,30 @@ function About() {
   )
 }
 
-function Projects() {
+function Executives() {
   return (
-    <section id="projects" className="section">
+    <section id="executives" className="section">
       <div className="container">
         <SectionHeader
-          eyebrow="Build"
-          title="The kinds of projects we rally around"
-          description="These are the build tracks members can plug into across workshops, jams, and self-directed prototypes."
+          eyebrow="Executives"
+          title="Executive team"
+          description="Meet the team helping run Singularity through the 2026 club year."
         />
 
-        <div className="grid-3">
-          {buildTracks.map((track, index) => (
+        <div className="exec-grid">
+          {executiveRoles.map((member, index) => (
             <motion.article
-              key={track.title}
-              className="glass-card project-card"
+              key={member.role}
+              className="glass-card exec-card"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
+              transition={{ duration: 0.4, delay: index * 0.06 }}
             >
-              <div className="project-head">
-                <Zap size={22} />
-                <span className="tag project-status">{track.status}</span>
-              </div>
-              <h3>{track.title}</h3>
-              <p>{track.description}</p>
-              <div className="project-tags">
-                {track.tags.map((tag) => (
-                  <span key={tag} className="tag">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <ExecutivePhoto member={member} />
+              <span className="tag exec-role">{member.role}</span>
+              <h3 className="exec-name">{member.name}</h3>
+              <p>{member.summary}</p>
             </motion.article>
           ))}
         </div>
@@ -635,67 +762,60 @@ function Projects() {
 }
 
 function Events() {
+  const carouselRef = useRef(null)
+
+  const handleWheel = (event) => {
+    const carousel = carouselRef.current
+    if (!carousel) {
+      return
+    }
+
+    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+      return
+    }
+
+    event.preventDefault()
+    carousel.scrollLeft += event.deltaY
+  }
+
   return (
     <section id="events" className="section">
       <div className="container">
         <SectionHeader
           eyebrow="Events"
-          title="Structured enough to be useful, flexible enough to stay current"
-          description="Expect workshops, build nights, and showcase moments throughout the trimester, with exact details shared through our live channels."
+          title="The 2026 event calendar"
+          description="Scroll through the 2026 lineup to see the workshops, socials, talks, and showcase moments planned across the year."
         />
 
-        <div className="activity-layout">
-          <div className="grid-3">
-            {eventFormats.map((event, index) => (
-              <motion.article
-                key={event.title}
-                className="glass-card activity-card"
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-              >
-                <div className="info-icon">
-                  <event.icon size={26} />
-                </div>
-                <h3>{event.title}</h3>
-                <p>{event.description}</p>
-              </motion.article>
-            ))}
-          </div>
+        <p className="event-carousel-note">
+          Hover here and use your scroll wheel to move sideways through the year.
+        </p>
 
-          <motion.aside
-            className="glass-card spotlight-card"
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.45 }}
-          >
-            <span className="eyebrow">Best place for exact dates</span>
-            <h3>Follow the live channels for room changes and announcements</h3>
-            <p>
-              Workshops, rooms, and showcase details shift during the trimester.
-              Instagram is now the primary place to publish current updates.
-            </p>
-            <div className="spotlight-actions">
-              <a
-                className="btn btn-primary"
-                href="https://www.instagram.com/singularity_uow/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View Instagram <ExternalLink size={16} />
-              </a>
-              <a
-                className="btn btn-outline"
-                href="https://github.com/Singularity-AI-UoW"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View GitHub <Github size={16} />
-              </a>
-            </div>
-          </motion.aside>
+        <div ref={carouselRef} className="event-carousel" onWheel={handleWheel}>
+          {eventSchedule.map((event, index) => (
+            <motion.article
+              key={`${event.dateLabel}-${event.title}`}
+              className="glass-card event-card"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.4, delay: index * 0.03 }}
+            >
+              <div className="event-top">
+                <span className="tag">{event.month}</span>
+                <span className="event-date">
+                  <CalendarDays size={16} />
+                  {event.dateLabel}
+                </span>
+              </div>
+              <h3>{event.title}</h3>
+              <p className="event-summary">{event.summary}</p>
+              <div className="event-location">
+                <MapPin size={16} />
+                <span>{event.location}</span>
+              </div>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>
@@ -747,9 +867,9 @@ function Updates() {
     <section id="updates" className="section">
       <div className="container">
         <SectionHeader
-          eyebrow="Latest updates"
-          title="Live Instagram updates"
-          description="Recent posts are embedded directly from Instagram, so each post keeps its own layout and height."
+          eyebrow="Updates"
+          title="Latest from Instagram"
+          description="The feed below pulls from the club's latest public Instagram posts."
         />
 
         <div className="updates-grid">
@@ -762,59 +882,14 @@ function Updates() {
   )
 }
 
-function Join() {
-  return (
-    <section id="join" className="section">
-      <div className="container">
-        <motion.div
-          className="glass-card join-card"
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.45 }}
-        >
-          <div>
-            <span className="eyebrow">Join</span>
-            <h2>Show up curious. Leave with momentum.</h2>
-            <p>
-              Whether you are testing your first model or already shipping side
-              projects, the club is designed to help you keep moving.
-            </p>
-            <div className="hero-actions">
-              <a
-                href="mailto:hello@singularityai.club?subject=I%20want%20to%20join%20Singularity%20AI"
-                className="btn btn-primary"
-              >
-                Reach out <Mail size={18} />
-              </a>
-              <a href="#contact" className="btn btn-outline">
-                Contact options <ChevronRight size={18} />
-              </a>
-            </div>
-          </div>
-
-          <div className="benefit-list">
-            {joinBenefits.map((benefit) => (
-              <div key={benefit} className="benefit-tile">
-                <span className="benefit-dot" />
-                <p>{benefit}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
 function Resources() {
   return (
     <section id="resources" className="section">
       <div className="container">
         <SectionHeader
           eyebrow="Resources"
-          title="A cleaner starting stack"
-          description="A short list of tools, references, and learning paths that are worth starting with."
+          title="A short starting stack"
+          description="Useful references, tutorials, and courses for members who want a strong place to begin."
         />
 
         <div className="grid-3">
@@ -846,61 +921,30 @@ function Resources() {
   )
 }
 
-function Contact() {
-  return (
-    <section id="contact" className="section">
-      <div className="container">
-        <SectionHeader
-          eyebrow="Contact"
-          title="Keep in touch with the club"
-          description="The fastest way to hear about rooms, workshops, demos, and collaborations is through these channels."
-        />
-
-        <div className="contact-grid">
-          {contactLinks.map((link, index) => (
-            <motion.a
-              key={link.title}
-              className="glass-card contact-card"
-              href={link.href}
-              target={link.external ? '_blank' : undefined}
-              rel={link.external ? 'noreferrer' : undefined}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
-            >
-              <div className="contact-icon">
-                <link.icon size={24} />
-              </div>
-              <h3>{link.title}</h3>
-              <p>{link.description}</p>
-              <span className="inline-link">
-                Open link <ExternalLink size={16} />
-              </span>
-            </motion.a>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-content">
         <div className="footer-brand">
           <a href="#top" className="logo footer-logo">
-            <img src="/singularity-icon.svg" alt="Singularity AI" />
+            <img src="/singularity-icon.svg" alt="Singularity" />
             <div className="logo-copy">
-              <strong>Singularity AI</strong>
-              <span>University of Waikato</span>
+              <strong>Singularity</strong>
+              <span>University of Waikato AI Club</span>
             </div>
           </a>
           <p>
-            University of Waikato&apos;s AI student club. Building skills,
-            projects, and momentum together.
+            Singularity is the University of Waikato AI Club, focused on
+            approachable workshops, strong follow-up, and student-led momentum.
           </p>
+          <a
+            href={joinLink}
+            className="btn btn-primary footer-cta"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Join Singularity <ArrowRight size={18} />
+          </a>
         </div>
 
         <div>
@@ -911,45 +955,29 @@ function Footer() {
                 <a href={item.href}>{item.label}</a>
               </li>
             ))}
-            <li>
-              <a href="#resources">Resources</a>
-            </li>
           </ul>
         </div>
 
         <div>
-          <h4>Follow</h4>
+          <h4>Connect</h4>
           <ul className="footer-links">
-            <li>
-              <a
-                href="https://www.instagram.com/singularity_uow/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Instagram
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/Singularity-AI-UoW"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="mailto:hello@singularityai.club">Email</a>
-            </li>
+            {contactLinks.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noreferrer' : undefined}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
 
       <div className="container footer-bottom">
-        <p>
-          &copy; {new Date().getFullYear()} Singularity AI Club, University of
-          Waikato.
-        </p>
+        <p>&copy; {new Date().getFullYear()} Singularity, University of Waikato.</p>
       </div>
     </footer>
   )
@@ -963,12 +991,10 @@ function App() {
       <main>
         <Hero />
         <About />
-        <Projects />
+        <Executives />
         <Events />
         <Updates />
-        <Join />
         <Resources />
-        <Contact />
       </main>
       <Footer />
     </>
