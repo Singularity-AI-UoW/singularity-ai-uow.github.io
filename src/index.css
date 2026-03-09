@@ -331,6 +331,9 @@ section[id] {
   display: grid;
   gap: 1.25rem;
   padding: 1.2rem;
+  background: rgba(5, 5, 8, 0.94);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
 }
 
 .mobile-nav-links {
@@ -344,11 +347,14 @@ section[id] {
   padding: 0.75rem 0.9rem;
   border-radius: 14px;
   color: var(--light);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 600;
 }
 
 .mobile-nav-links a:hover {
-  background: rgba(0, 212, 255, 0.08);
+  background: rgba(0, 212, 255, 0.16);
+  border-color: rgba(0, 212, 255, 0.24);
 }
 
 .hero {
@@ -372,6 +378,8 @@ section[id] {
 
 .hero-copy h1 {
   margin-bottom: 1.25rem;
+  padding-bottom: 0.08em;
+  line-height: 1.12;
   background: linear-gradient(135deg, var(--light), rgba(229, 229, 240, 0.72));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -554,9 +562,11 @@ section[id] {
 }
 
 .floating-particles {
-  position: absolute;
+  position: fixed;
   inset: 0;
+  z-index: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .particle {

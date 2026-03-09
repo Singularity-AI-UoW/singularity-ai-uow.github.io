@@ -509,8 +509,6 @@ function Navigation() {
 function Hero() {
   return (
     <section className="hero" id="top">
-      <Particles />
-
       <div className="container hero-shell">
         <motion.div
           className="hero-copy"
@@ -549,8 +547,8 @@ function Events() {
       <div className="container">
         <SectionHeader
           eyebrow="Events"
-          title="The 2026 event calendar"
-          description="Browse the current workshop, social, and project schedule for the year."
+          title="The 2026 Event Calendar"
+          description="Free food served in all event!"
         />
 
         <div className="events-layout">
@@ -668,9 +666,9 @@ function Updates() {
     <section id="updates" className="section">
       <div className="container">
         <SectionHeader
-          eyebrow="Latest updates"
-          title="Latest post updates"
-          description="Recent posts pulled from the club's public Instagram feed."
+          eyebrow="Latest Updates"
+          title="Instagram Post & Reel"
+          description="Keep you updated with latest AI trend!"
         />
 
         <div className="updates-grid">
@@ -689,8 +687,8 @@ function Resources() {
       <div className="container">
         <SectionHeader
           eyebrow="Resources"
-          title="Resources to start with"
-          description="A short set of links for members who want a clear place to begin."
+          title="Your Journey Start Here"
+          description="Beginner friendly tutorials for AI!"
         />
 
         <div className="grid-3">
@@ -764,6 +762,7 @@ function App() {
   return (
     <>
       <div className="bg-grid" />
+      <Particles />
       <Navigation />
       <main>
         <Hero />
