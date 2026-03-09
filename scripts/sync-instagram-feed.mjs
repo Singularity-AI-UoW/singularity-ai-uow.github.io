@@ -44,14 +44,32 @@ function getTitle(item) {
   return kind
 }
 
+function getThumbnailUrl(item) {
+  const candidates = item.image_versions2?.candidates
+
+  if (Array.isArray(candidates) && candidates.length > 0) {
+    return candidates[0].url
+  }
+
+  const carouselCandidates = item.carousel_media?.[0]?.image_versions2?.candidates
+  if (Array.isArray(carouselCandidates) && carouselCandidates.length > 0) {
+    return carouselCandidates[0].url
+  }
+
+  return null
+}
+
 function normalisePost(item) {
   if (!item?.code) {
     return null
   }
 
+  const imageUrl = getThumbnailUrl(item)
+
   return {
     title: getTitle(item),
     href: `https://www.instagram.com/${getEmbedPath(item)}/${item.code}/`,
+    imageUrl,
     embedWidth: 360,
     embedHeight: getEmbedHeight(item),
   }

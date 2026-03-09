@@ -8,83 +8,21 @@ import {
   CalendarDays,
   Code2,
   ExternalLink,
-  Github,
-  Instagram,
-  Mail,
   MapPin,
   Menu,
   Sparkles,
-  Users,
   X,
   Zap,
 } from 'lucide-react'
 
-const joinLink = 'https://forms.office.com/'
+const joinLink = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=9jvQPMMGY0yZwYCOOP1xLMgpwwYUoCxPr3eZ-P4o8yJUOFRaOEg4OUlLUEZVOEhGVzJSWUxWNjc3Ri4u'
 
 const navItems = [
-  { label: 'About', href: '#about' },
-  { label: 'Executives', href: '#executives' },
-  { label: 'Events', href: '#events' },
+  { label: 'Home', href: '#top' },
   { label: 'Updates', href: '#updates' },
+  { label: 'Events', href: '#events' },
   { label: 'Resources', href: '#resources' },
 ]
-
-const aboutCards = [
-  {
-    icon: Brain,
-    accent: 'var(--primary)',
-    title: 'Learn with structure',
-    description:
-      'Singularity keeps AI approachable through guided workshops, clear follow-up, and sessions that start from first principles.',
-  },
-  {
-    icon: Users,
-    accent: 'var(--secondary)',
-    title: 'Meet collaborators',
-    description:
-      'The club gives students a place to compare tools, find teammates, and keep ideas moving after the first conversation.',
-  },
-  {
-    icon: Sparkles,
-    accent: 'var(--accent)',
-    title: 'Stay current',
-    description:
-      'Events, Instagram updates, and shared resources make it easier to stay involved across the whole year.',
-  },
-]
-
-const executiveRoles = [
-  {
-    role: 'President',
-    name: 'Kang Zhou',
-    photoName: 'kang-zhou',
-    summary:
-      'Owns direction, partnerships, and the overall rhythm of the club year.',
-  },
-  {
-    role: 'Content Creator',
-    name: 'Chianne Lyford Shields',
-    photoName: 'chianne-lyford-shields',
-    summary:
-      'Supports content delivery across events, operations, and taking photo and video for the club.',
-  },
-  {
-    role: 'Secretary',
-    name: 'Andrew Lin',
-    photoName: 'andrew-lin',
-    summary:
-      'Keeps communication, records, and follow-up organised so members know what is happening next.',
-  },
-  {
-    role: 'Treasurer',
-    name: 'Alex Noble',
-    photoName: 'alex-noble',
-    summary:
-      'Looks after budgeting, approvals, and the practical resourcing behind club activity.',
-  },
-]
-
-const executivePhotoExtensions = ['jpg', 'jpeg', 'png', 'webp']
 
 const eventSchedule = [
   {
@@ -317,38 +255,23 @@ function isValidInstagramPost(post) {
   return (
     typeof post?.href === 'string' &&
     post.href.startsWith('https://www.instagram.com/') &&
+    (typeof post?.imageUrl === 'string' || post?.imageUrl == null) &&
     Number.isFinite(post?.embedWidth) &&
     Number.isFinite(post?.embedHeight)
   )
 }
 
-function getInstagramEmbedFrameUrl(href) {
-  const url = new URL(href)
-  url.search = ''
-  url.hash = ''
-  url.pathname = `${url.pathname.replace(/\/$/, '')}/embed/captioned/`
-  return url.toString()
-}
-
-function parseInstagramEmbedMessage(message) {
-  if (typeof message !== 'string') {
-    return null
+function getInstagramPostType(href) {
+  if (href.includes('/reel/')) {
+    return 'Reel'
   }
 
-  try {
-    return JSON.parse(message)
-  } catch {
-    return null
-  }
+  return 'Post'
 }
 
-function getInitials(name) {
-  return name
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase() || '')
-    .join('')
+function getInstagramPostDate(title) {
+  const match = typeof title === 'string' ? title.match(/\d{4}-\d{2}-\d{2}/) : null
+  return match ? match[0] : title
 }
 
 function Particles() {
@@ -411,125 +334,44 @@ function SectionHeader({ eyebrow, title, description }) {
   )
 }
 
-function ExecutivePhoto({ member }) {
-  const [photoIndex, setPhotoIndex] = useState(0)
-  const [isMissing, setIsMissing] = useState(!member.photoName)
-
-  const photoSrc =
-    !isMissing && member.photoName
-      ? `/executives/${member.photoName}.${executivePhotoExtensions[photoIndex]}`
-      : null
-
-  const handleError = () => {
-    const nextIndex = photoIndex + 1
-    if (nextIndex < executivePhotoExtensions.length) {
-      setPhotoIndex(nextIndex)
-      return
-    }
-
-    setIsMissing(true)
-  }
+function InstagramPostCard({ post, index }) {
+  const postType = getInstagramPostType(post.href)
+  const postDate = getInstagramPostDate(post.title)
 
   return (
-    <div className="exec-photo-frame">
-      {photoSrc ? (
-        <img
-          src={photoSrc}
-          alt={`Portrait of ${member.name}`}
-          className="exec-photo"
-          loading="lazy"
-          onError={handleError}
-        />
-      ) : (
-        <div className="exec-photo-fallback">{getInitials(member.name)}</div>
-      )}
-    </div>
-  )
-}
-
-function InstagramEmbedCard({ post, index }) {
-  const shellRef = useRef(null)
-  const frameRef = useRef(null)
-  const [frameHeight, setFrameHeight] = useState(post.embedHeight)
-
-  useEffect(() => {
-    const shell = shellRef.current
-    const frame = frameRef.current
-    if (!shell || !frame) {
-      return undefined
-    }
-
-    const updateHeight = () => {
-      const shellWidth = shell.getBoundingClientRect().width || post.embedWidth
-      const scaledHeight = Math.round((shellWidth / post.embedWidth) * post.embedHeight)
-      const nextHeight = Math.max(480, scaledHeight)
-      setFrameHeight((currentHeight) =>
-        currentHeight === nextHeight ? currentHeight : nextHeight,
-      )
-    }
-
-    updateHeight()
-
-    const observer = new ResizeObserver(updateHeight)
-    observer.observe(shell)
-
-    const handleMessage = (event) => {
-      if (event.origin !== 'https://www.instagram.com') {
-        return
-      }
-
-      if (event.source !== frame.contentWindow) {
-        return
-      }
-
-      const payload = parseInstagramEmbedMessage(event.data)
-      if (payload?.type !== 'MEASURE') {
-        return
-      }
-
-      const nextHeight = Math.max(480, Number(payload.details?.height) || 0)
-      setFrameHeight((currentHeight) =>
-        currentHeight === nextHeight ? currentHeight : nextHeight,
-      )
-    }
-
-    window.addEventListener('message', handleMessage)
-
-    return () => {
-      observer.disconnect()
-      window.removeEventListener('message', handleMessage)
-    }
-  }, [post.embedHeight, post.embedWidth])
-
-  return (
-    <motion.article
+    <motion.a
       className="glass-card update-card"
+      href={post.href}
+      target="_blank"
+      rel="noreferrer"
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.4, delay: index * 0.08 }}
+      style={
+        post.imageUrl
+          ? {
+              backgroundImage: `linear-gradient(180deg, rgba(10, 10, 15, 0.14), rgba(10, 10, 15, 0.82)), url("${post.imageUrl}")`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }
+          : undefined
+      }
     >
-      <div ref={shellRef} className="update-embed-shell">
-        <iframe
-          ref={frameRef}
-          className="update-embed-frame"
-          title={`${post.title} Instagram embed`}
-          src={getInstagramEmbedFrameUrl(post.href)}
-          loading="lazy"
-          scrolling="no"
-          allowFullScreen
-          style={{ height: `${frameHeight}px` }}
-        />
+      <div className="update-card-top">
+        <span className="tag">{postType}</span>
+        <ExternalLink size={18} />
       </div>
-      <a
-        className="inline-link update-embed-link"
-        href={post.href}
-        target="_blank"
-        rel="noreferrer"
-      >
-        View on Instagram <ExternalLink size={16} />
-      </a>
-    </motion.article>
+      {post.imageUrl ? null : (
+        <div className="update-card-preview" aria-hidden="true">
+          <span>@singularity_uow</span>
+          <strong>{postType}</strong>
+        </div>
+      )}
+      <div className="update-card-body">
+        <h3>{postDate}</h3>
+      </div>
+    </motion.a>
   )
 }
 
@@ -641,8 +483,8 @@ function Hero() {
           <span className="eyebrow">University of Waikato AI Club</span>
           <h1>Singularity</h1>
           <p>
-            Singularity is a student-led AI club focused on practical workshops,
-            thoughtful discussion, and projects that members can actually show.
+            Singularity is a student-led club for Waikato students who want
+            practical AI workshops, projects, and a strong community.
           </p>
 
           <div className="hero-actions">
@@ -654,129 +496,15 @@ function Hero() {
             >
               Join Singularity <ArrowRight size={18} />
             </a>
-            <a href="#events" className="btn btn-outline">
-              View 2026 events <CalendarDays size={18} />
-            </a>
           </div>
         </motion.div>
-
-        <motion.aside
-          className="hero-panel glass-card"
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-        >
-          <div className="panel-badge">
-            <Sparkles size={16} />
-            What to expect
-          </div>
-          <h2>A full year of practical AI events.</h2>
-          <p>
-            From March to November, Singularity mixes on-ramps, project nights,
-            talks, socials, and a showcase that keeps the year connected.
-          </p>
-
-          <div className="hero-stat-grid">
-            <div className="hero-stat">
-              <strong>{eventSchedule.length}</strong>
-              <span>planned events</span>
-            </div>
-            <div className="hero-stat">
-              <strong>Mar-Nov</strong>
-              <span>from kickoff to showcase</span>
-            </div>
-            <div className="hero-stat">
-              <strong>Beginner Friendly</strong>
-              <span>with room to go deeper</span>
-            </div>
-          </div>
-        </motion.aside>
-      </div>
-    </section>
-  )
-}
-
-function About() {
-  return (
-    <section id="about" className="section">
-      <div className="container">
-        <SectionHeader
-          eyebrow="About"
-          title="What Singularity is for"
-          description="Singularity is designed to help students get into AI, stay engaged, and keep momentum between events."
-        />
-
-        <div className="grid-3">
-          {aboutCards.map((card, index) => (
-            <motion.article
-              key={card.title}
-              className="glass-card info-card"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
-            >
-              <div className="info-icon" style={{ color: card.accent }}>
-                <card.icon size={30} />
-              </div>
-              <h3>{card.title}</h3>
-              <p>{card.description}</p>
-            </motion.article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function Executives() {
-  return (
-    <section id="executives" className="section">
-      <div className="container">
-        <SectionHeader
-          eyebrow="Executives"
-          title="Executive team"
-          description="Meet the team helping run Singularity through the 2026 club year."
-        />
-
-        <div className="exec-grid">
-          {executiveRoles.map((member, index) => (
-            <motion.article
-              key={member.role}
-              className="glass-card exec-card"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.4, delay: index * 0.06 }}
-            >
-              <ExecutivePhoto member={member} />
-              <span className="tag exec-role">{member.role}</span>
-              <h3 className="exec-name">{member.name}</h3>
-              <p>{member.summary}</p>
-            </motion.article>
-          ))}
-        </div>
       </div>
     </section>
   )
 }
 
 function Events() {
-  const carouselRef = useRef(null)
-
-  const handleWheel = (event) => {
-    const carousel = carouselRef.current
-    if (!carousel) {
-      return
-    }
-
-    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
-      return
-    }
-
-    event.preventDefault()
-    carousel.scrollLeft += event.deltaY
-  }
+  const [activeEvent, setActiveEvent] = useState(eventSchedule[0])
 
   return (
     <section id="events" className="section">
@@ -784,38 +512,62 @@ function Events() {
         <SectionHeader
           eyebrow="Events"
           title="The 2026 event calendar"
-          description="Scroll through the 2026 lineup to see the workshops, socials, talks, and showcase moments planned across the year."
+          description="Browse the current workshop, social, and project schedule for the year."
         />
 
-        <p className="event-carousel-note">
-          Hover here and use your scroll wheel to move sideways through the year.
-        </p>
+        <div className="events-layout">
+          <div className="glass-card events-list" role="list">
+            {eventSchedule.map((event, index) => (
+              <motion.article
+                key={`${event.dateLabel}-${event.title}`}
+                className={`event-list-item ${activeEvent.title === event.title ? 'active' : ''}`}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.4, delay: index * 0.03 }}
+                onMouseEnter={() => setActiveEvent(event)}
+                onFocus={() => setActiveEvent(event)}
+                tabIndex={0}
+                role="listitem"
+              >
+                <div className="event-list-meta">
+                  <span className="tag">{event.month}</span>
+                  <span className="event-date">
+                    <CalendarDays size={16} />
+                    {event.dateLabel}
+                  </span>
+                </div>
+                <h3>{event.title}</h3>
+                <div className="event-location">
+                  <MapPin size={16} />
+                  <span>{event.location}</span>
+                </div>
+              </motion.article>
+            ))}
+          </div>
 
-        <div ref={carouselRef} className="event-carousel" onWheel={handleWheel}>
-          {eventSchedule.map((event, index) => (
-            <motion.article
-              key={`${event.dateLabel}-${event.title}`}
-              className="glass-card event-card"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.4, delay: index * 0.03 }}
-            >
-              <div className="event-top">
-                <span className="tag">{event.month}</span>
-                <span className="event-date">
-                  <CalendarDays size={16} />
-                  {event.dateLabel}
-                </span>
-              </div>
-              <h3>{event.title}</h3>
-              <p className="event-summary">{event.summary}</p>
-              <div className="event-location">
-                <MapPin size={16} />
-                <span>{event.location}</span>
-              </div>
-            </motion.article>
-          ))}
+          <motion.aside
+            key={activeEvent.title}
+            className="glass-card event-detail"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <span className="eyebrow">Event overview</span>
+            <div className="event-top">
+              <span className="tag">{activeEvent.month}</span>
+              <span className="event-date">
+                <CalendarDays size={16} />
+                {activeEvent.dateLabel}
+              </span>
+            </div>
+            <h3>{activeEvent.title}</h3>
+            <p className="event-summary">{activeEvent.summary}</p>
+            <div className="event-location">
+              <MapPin size={16} />
+              <span>{activeEvent.location}</span>
+            </div>
+          </motion.aside>
         </div>
       </div>
     </section>
@@ -867,14 +619,14 @@ function Updates() {
     <section id="updates" className="section">
       <div className="container">
         <SectionHeader
-          eyebrow="Updates"
-          title="Latest from Instagram"
-          description="The feed below pulls from the club's latest public Instagram posts."
+          eyebrow="Latest updates"
+          title="Latest post updates"
+          description="Recent posts pulled from the club's public Instagram feed."
         />
 
         <div className="updates-grid">
           {posts.map((post, index) => (
-            <InstagramEmbedCard key={post.href} post={post} index={index} />
+            <InstagramPostCard key={post.href} post={post} index={index} />
           ))}
         </div>
       </div>
@@ -888,8 +640,8 @@ function Resources() {
       <div className="container">
         <SectionHeader
           eyebrow="Resources"
-          title="A short starting stack"
-          description="Useful references, tutorials, and courses for members who want a strong place to begin."
+          title="Resources to start with"
+          description="A short set of links for members who want a clear place to begin."
         />
 
         <div className="grid-3">
@@ -904,19 +656,19 @@ function Resources() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-            >
-              <div className="resource-icon">
-                <resource.icon size={24} />
-              </div>
-              <div className="resource-copy">
-                <span className="tag">{resource.type}</span>
-                <h3>{resource.title}</h3>
-              </div>
-              <ExternalLink size={18} />
-            </motion.a>
-          ))}
+              >
+                <div className="resource-icon">
+                  <resource.icon size={24} />
+                </div>
+                <div className="resource-copy">
+                  <span className="tag">{resource.type}</span>
+                  <h3>{resource.title}</h3>
+                </div>
+                <ExternalLink className="resource-link-icon" size={18} />
+              </motion.a>
+            ))}
+          </div>
         </div>
-      </div>
     </section>
   )
 }
@@ -925,41 +677,17 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-content">
-        <div className="footer-brand">
-          <a href="#top" className="logo footer-logo">
-            <img src="/singularity-icon.svg" alt="Singularity" />
-            <div className="logo-copy">
-              <strong>Singularity</strong>
-              <span>University of Waikato AI Club</span>
-            </div>
-          </a>
-          <p>
-            Singularity is the University of Waikato AI Club, focused on
-            approachable workshops, strong follow-up, and student-led momentum.
-          </p>
-          <a
-            href={joinLink}
-            className="btn btn-primary footer-cta"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Join Singularity <ArrowRight size={18} />
-          </a>
+        <div className="footer-sponsor">
+          <span className="eyebrow footer-eyebrow">Sponsors</span>
+          <img
+            className="footer-sponsor-logo"
+            src="/WSU-logo-transparent.svg"
+            alt="Waikato Students' Union"
+          />
         </div>
 
-        <div>
-          <h4>Explore</h4>
-          <ul className="footer-links">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a href={item.href}>{item.label}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h4>Connect</h4>
+        <div className="footer-connect">
+          <span className="eyebrow footer-eyebrow">Connect</span>
           <ul className="footer-links">
             {contactLinks.map((link) => (
               <li key={link.label}>
@@ -990,10 +718,8 @@ function App() {
       <Navigation />
       <main>
         <Hero />
-        <About />
-        <Executives />
-        <Events />
         <Updates />
+        <Events />
         <Resources />
       </main>
       <Footer />
