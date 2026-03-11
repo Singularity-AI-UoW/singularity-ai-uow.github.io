@@ -668,7 +668,7 @@ function Updates() {
         <SectionHeader
           eyebrow="Latest Updates"
           title="Instagram Post & Reel"
-          description="Keep you updated with latest AI trend!"
+          description="Keeps you updated with latest AI trends!"
         />
 
         <div className="updates-grid">
@@ -687,7 +687,7 @@ function Resources() {
       <div className="container">
         <SectionHeader
           eyebrow="Resources"
-          title="Your Journey Start Here"
+          title="Your Journey Starts Here"
           description="Beginner friendly tutorials for AI!"
         />
 
