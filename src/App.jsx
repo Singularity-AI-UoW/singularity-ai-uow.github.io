@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   ArrowRight,
@@ -18,6 +18,7 @@ import {
 } from 'lucide-react'
 
 const joinLink = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=9jvQPMMGY0yZwYCOOP1xLMgpwwYUoCxPr3eZ-P4o8yJUOFRaOEg4OUlLUEZVOEhGVzJSWUxWNjc3Ri4u'
+const instagramEmbedUrl = 'https://www.instagram.com/singularity_uow/embed'
 
 const navItems = [
   { label: 'Home', href: '#top' },
@@ -209,29 +210,6 @@ const eventSchedule = [
   },
 ]
 
-const fallbackInstagramPosts = [
-  {
-    title: 'International Women\'s Day reel',
-    href: 'https://www.instagram.com/reel/DVmugzek94K/',
-    embedWidth: 360,
-    embedHeight: 884,
-  },
-  {
-    title: 'Club day update',
-    href: 'https://www.instagram.com/p/DVcAjXIE3IM/',
-    embedWidth: 360,
-    embedHeight: 663,
-  },
-  {
-    title: 'Global Game Jam project spotlight',
-    href: 'https://www.instagram.com/p/DUpuTP2ER5B/',
-    embedWidth: 360,
-    embedHeight: 510,
-  },
-]
-
-const instagramFeedEndpoint = '/instagram-posts.json'
-
 const resources = [
   {
     title: 'Python docs',
@@ -288,29 +266,6 @@ const contactLinks = [
     external: false,
   },
 ]
-
-function isValidInstagramPost(post) {
-  return (
-    typeof post?.href === 'string' &&
-    post.href.startsWith('https://www.instagram.com/') &&
-    (typeof post?.imageUrl === 'string' || post?.imageUrl == null) &&
-    Number.isFinite(post?.embedWidth) &&
-    Number.isFinite(post?.embedHeight)
-  )
-}
-
-function getInstagramPostType(href) {
-  if (href.includes('/reel/')) {
-    return 'Reel'
-  }
-
-  return 'Post'
-}
-
-function getInstagramPostDate(title) {
-  const match = typeof title === 'string' ? title.match(/\d{4}-\d{2}-\d{2}/) : null
-  return match ? match[0] : title
-}
 
 function Particles() {
   const [particles] = useState(() =>
@@ -369,47 +324,6 @@ function SectionHeader({ eyebrow, title, description }) {
       <h2>{title}</h2>
       <p>{description}</p>
     </div>
-  )
-}
-
-function InstagramPostCard({ post, index }) {
-  const postType = getInstagramPostType(post.href)
-  const postDate = getInstagramPostDate(post.title)
-
-  return (
-    <motion.a
-      className="glass-card update-card"
-      href={post.href}
-      target="_blank"
-      rel="noreferrer"
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
-      style={
-        post.imageUrl
-          ? {
-              backgroundImage: `linear-gradient(180deg, rgba(10, 10, 15, 0.14), rgba(10, 10, 15, 0.82)), url("${post.imageUrl}")`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }
-          : undefined
-      }
-    >
-      <div className="update-card-top">
-        <span className="tag">{postType}</span>
-        <ExternalLink size={18} />
-      </div>
-      {post.imageUrl ? null : (
-        <div className="update-card-preview" aria-hidden="true">
-          <span>@singularity_uow</span>
-          <strong>{postType}</strong>
-        </div>
-      )}
-      <div className="update-card-body">
-        <h3>{postDate}</h3>
-      </div>
-    </motion.a>
   )
 }
 
@@ -622,60 +536,30 @@ function Events() {
 }
 
 function Updates() {
-  const [posts, setPosts] = useState(fallbackInstagramPosts)
-
-  useEffect(() => {
-    const controller = new AbortController()
-
-    async function loadPosts() {
-      try {
-        const response = await fetch(instagramFeedEndpoint, {
-          cache: 'no-store',
-          signal: controller.signal,
-        })
-
-        if (!response.ok) {
-          throw new Error(`Instagram feed returned ${response.status}`)
-        }
-
-        const payload = await response.json()
-
-        if (!Array.isArray(payload?.posts)) {
-          throw new Error('Instagram feed did not include a posts array')
-        }
-
-        const latestPosts = payload.posts.filter(isValidInstagramPost)
-        if (latestPosts.length > 0) {
-          setPosts(latestPosts)
-        }
-      } catch (error) {
-        if (error.name !== 'AbortError') {
-          console.warn('Falling back to bundled Instagram post URLs.', error)
-        }
-      }
-    }
-
-    loadPosts()
-
-    return () => {
-      controller.abort()
-    }
-  }, [])
-
   return (
     <section id="updates" className="section">
       <div className="container">
         <SectionHeader
-          eyebrow="Latest Updates"
-          title="Instagram Post & Reel"
-          description="Keep you updated with latest AI trend!"
+          eyebrow="Instagram"
+          title="See The Club Feed Live"
+          description="Browse the official Singularity Instagram profile here."
         />
 
-        <div className="updates-grid">
-          {posts.map((post, index) => (
-            <InstagramPostCard key={post.href} post={post} index={index} />
-          ))}
-        </div>
+        <motion.div
+          className="glass-card instagram-card"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.45 }}
+        >
+          <iframe
+            className="instagram-frame"
+            src={instagramEmbedUrl}
+            title="Singularity Instagram profile"
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        </motion.div>
       </div>
     </section>
   )

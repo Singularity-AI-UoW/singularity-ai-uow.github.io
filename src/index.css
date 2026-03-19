@@ -836,6 +836,25 @@ section[id] {
   gap: 0.85rem;
 }
 
+.instagram-simple {
+  width: 100%;
+}
+
+.instagram-card {
+  width: 100%;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.instagram-frame {
+  display: block;
+  width: 100%;
+  height: clamp(640px, 72vw, 860px);
+  border: 0;
+  border-radius: 18px;
+  background: #fff;
+}
+
 .updates-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1178,6 +1197,10 @@ section[id] {
   .contact-grid,
   .grid-3 {
     grid-template-columns: 1fr;
+  }
+
+  .instagram-frame {
+    height: clamp(520px, 110vw, 700px);
   }
 
   .join-card,
