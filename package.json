@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "sync:instagram": "node scripts/sync-instagram-feed.mjs",
+    "validate:site": "node scripts/validate-site-output.mjs",
     "predev": "npm run sync:instagram",
     "prebuild": "npm run sync:instagram",
     "dev": "vite --open /site.html",
-    "build": "vite build && node scripts/publish-root.mjs",
+    "build": "vite build && node scripts/publish-root.mjs && npm run validate:site",
     "preview": "vite preview --open /site.html",
     "deploy": "bash deploy.sh"
   },
