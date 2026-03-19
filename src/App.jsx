@@ -31,11 +31,11 @@ const eventSchedule = [
     month: 'March',
     dateLabel: '20 March 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Club Kickoff: Build Your First AI Demo',
+    title: '2026 Kickoff: Build Your First AI Demo',
     summary:
-      'Participants build a working AI demo and leave with clear next steps for getting involved in the club. The session stays beginner-friendly through a guided Colab workflow, while returning members can explore optional extensions in a deeper core lane.',
+      'Join us for a hands-on AI workshop at the University of Waikato, where we\'ll explore the fundamentals of computer vision using Google Colab and PyTorch. You will learn how to prepare a custom fruit dataset and fine-tune a pre-trained ResNet-18 model to achieve high-accuracy image classification. By the end of the session, you\'ll understand the power of transfer learning and how to evaluate AI model performance with professional diagnostic tools.',
     imageSrc: '/20_03_26.png',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
     month: 'March',
