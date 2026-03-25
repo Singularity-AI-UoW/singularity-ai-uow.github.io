@@ -22,8 +22,8 @@ const instagramEmbedUrl = 'https://www.instagram.com/singularity_uow/embed'
 
 const navItems = [
   { label: 'Home', href: '#top' },
-  { label: 'Updates', href: '#updates' },
   { label: 'Events', href: '#events' },
+  { label: 'Instagram', href: '#instagram' },
   { label: 'Resources', href: '#resources' },
 ]
 
@@ -39,174 +39,154 @@ const eventSchedule = [
     location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
-    month: 'March',
-    dateLabel: '27 March 2026',
+    month: 'April',
+    dateLabel: '02 April 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Club Social: AI Interests Night',
+    title: 'AI Open House + Prompting Playground',
     summary:
-      'This structured social helps members meet peers, find shared interests, and shape the direction of upcoming club events. Expect guided introductions, themed discussion groups, and clear ways to volunteer for future projects or sessions.',
-    imageSrc: '27_03_26.png',
-    location: 'University of Waikato, Hamilton Campus',
+      'A relaxed welcome session for new and returning members to explore a few useful AI tools, meet the club, and try short prompt experiments without needing prior experience. We will run a handful of live demos, then give everyone time to test ideas in pairs or small groups and see how different prompts change the result. It is designed as a soft entry point before the more structured technical and project-focused events later in the semester.',
+    imageSrc: '/27_03_26.png',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
     month: 'April',
-    dateLabel: '10 April 2026',
+    dateLabel: '17 April 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Model Basics Workshop',
+    title: 'AI project Ideas Night',
     summary:
-      'Members learn the practical foundations of modelling through a notebook-first workshop focused on splits, metrics, and overfitting. Beginners get a clear introduction without heavy maths, while the core lane tests stronger baselines and compares what actually improves results.',
+      'Not sure where to start with AI? This session is designed to help members explore practical project ideas, discover different ways AI is being used, and connect with others who share similar interests. Whether you are into coding, local models, automation, research, design, or simply curious about what you can build, this event will help you turn interest into a concrete direction for the semester.',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
-  },
-  {
-    month: 'April',
-    dateLabel: '24 April 2026',
-    timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Tooling Workshop: Git, Colab & Hugging Face',
-    summary:
-      'This is a hands-on tooling session where attendees clone a repo, run a notebook, and use a Hugging Face model for inference. The goal is to make the club workflow feel approachable, with live examples and troubleshooting support built into the session.',
-    imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
     month: 'May',
-    dateLabel: '8 May 2026',
+    dateLabel: '1 May 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Kaggle Mini Challenge',
+    title: 'TBA',
     summary:
-      'Teams start from a known-good baseline and work toward measurable score improvements in a low-friction challenge format. The session emphasizes iteration, evaluation, and teamwork so members can learn the competition loop without getting blocked by setup.',
+      'TBA',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
     month: 'May',
-    dateLabel: '22 May 2026',
+    dateLabel: '15 May 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Paper Story Night: A Classic AI Paper',
+    title: 'TBA',
     summary:
-      'This session turns a classic AI paper into a clear story about the problem, the main idea, the key result, and the limitations. It is designed to stay approachable for beginners while still giving more advanced members room for deeper discussion afterward.',
+      'TBA',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
+  },
+  {
+    month: 'May',
+    dateLabel: '29 May 2026',
+    timeLabel: '6:00 pm - 8:00 pm',
+    title: 'TBA',
+    summary:
+      'TBA',
+    imageSrc: '',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
     month: 'June',
-    dateLabel: '5 June 2026',
-    timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Mini Hackathon: Campus Helper Bot',
+    dateLabel: '5 June 2026 -  19 June 2026',
+    timeLabel: 'TBA',
+    title: 'TBA',
     summary:
-      'Teams build a small demo that solves a real campus problem, using templates and judging criteria that keep the hackathon accessible. The focus is on shipping something real, presenting it clearly, and giving teams a path to continue the project afterward.',
+      'TBA',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'Online',
   },
   {
     month: 'June',
-    dateLabel: '19 June 2026',
-    timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Guest Research Talk',
+    dateLabel: '26 June 2026 - 10 July 2026',
+    timeLabel: 'TBA',
+    title: 'TBA',
     summary:
-      'A guest speaker will share a real research or industry perspective on AI in a way that stays accessible to newer members. The event is structured to support good questions, clear takeaways, and follow-up discussion after the talk.',
+      'TBA',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'Online',
   },
   {
     month: 'July',
-    dateLabel: '3 July 2026',
+    dateLabel: '9 July 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Debug Night: Reading Errors & Fixing Bugs',
+    title: 'TBA',
     summary:
-      'This workshop teaches a repeatable debugging process through real examples like traceback issues, dependency conflicts, and broken notebooks. Beginners get confidence with the basics, while the core lane works through harder ML and tooling failures in groups.',
+      'TBA',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
     month: 'July',
-    dateLabel: '17 July 2026',
+    dateLabel: '24 July 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Paper Story Night: Diffusion Models',
+    title: 'TBA',
     summary:
-      'Members build intuition for diffusion models through diagrams, examples, and guided discussion instead of heavy equations. The session explains what diffusion is useful for, where it breaks down, and why it matters in current AI workflows.',
+      'TBA',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
-  },
-  {
-    month: 'July',
-    dateLabel: '31 July 2026',
-    timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Build Along: Try a Diffusion Pipeline',
-    summary:
-      'Attendees run a working diffusion pipeline and then change one variable at a time to see how outputs shift in practice. The session is designed to make experimentation feel tangible, with side-by-side comparisons and fallback outputs ready if runtime issues appear.',
-    imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
     month: 'August',
-    dateLabel: '14 August 2026',
+    dateLabel: '7 August 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Serving Workshop: Basics, vLLM & Ollama',
+    title: 'TBA',
     summary:
-      'This workshop introduces model serving through a beginner-safe on-ramp and a more technical core track. Members learn the practical tradeoffs around latency, throughput, and local deployment tools like vLLM and Ollama.',
+      'TBA',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
     month: 'August',
-    dateLabel: '28 August 2026',
+    dateLabel: '21 August 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'AI in Society Debate Night',
+    title: 'TBA',
     summary:
-      'The debate night gives members a structured format for discussing AI\'s impact on society without drifting into hot takes. Small teams, timed rounds, and audience questions keep the session inclusive, evidence-based, and reflective.',
+      'TBA',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
     month: 'September',
-    dateLabel: '11 September 2026',
+    dateLabel: '4 September 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Project Showcase: Website & OpenClaw',
+    title: 'TBA',
     summary:
-      'This showcase night puts active club projects in front of the wider membership so teams can demo progress and recruit collaborators. Each project is expected to show something concrete and leave with clear next steps that new contributors can join.',
+      'TBA',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
     month: 'September',
-    dateLabel: '25 September 2026',
+    dateLabel: '18 September 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Fine-Tuning Night: Concepts + LoRA',
+    title: 'TBA',
     summary:
-      'Members compare prompting, RAG, and fine-tuning before the core lane runs a small LoRA workflow end to end. The event is structured to keep the conceptual path clear for beginners while still giving hands-on depth to members ready to experiment.',
+      'TBA',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
     month: 'October',
-    dateLabel: '9 October 2026',
+    dateLabel: '2 October 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'AI Safety & Failure Modes',
+    title: 'TBA',
     summary:
-      'This session explores real AI risks such as hallucination, bias, privacy, and prompt injection through case studies and practical worksheets. Members leave with a stronger sense of how to spot failure modes and design realistic mitigations for their own projects.',
+      'TBA',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
     month: 'October',
-    dateLabel: '23 October 2026',
-    timeLabel: '6:00 pm - 11:00 pm',
-    title: 'Kaggle Year-end Hackathon',
-    summary:
-      'This longer-format Kaggle event is designed to feel like a real competition while still staying beginner-safe through strong scaffolding and checkpoints. Teams make real submissions, iterate on their ideas, and present what worked, what failed, and what they learned.',
-    imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
-  },
-  {
-    month: 'November',
-    dateLabel: '6 November 2026',
+    dateLabel: '16 October 2026',
     timeLabel: '6:00 pm - 8:00 pm',
-    title: 'Year-End Showcase & Awards',
+    title: 'TBA',
     summary:
-      'The year-end showcase celebrates what members built across the year through short demos, fast presentations, and awards. It is meant to recognize progress at every skill level while closing the calendar with a strong sense of momentum for next year.',
+      'TBA',
     imageSrc: '',
-    location: 'University of Waikato, Hamilton Campus',
+    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
 ]
 
@@ -266,6 +246,109 @@ const contactLinks = [
     external: false,
   },
 ]
+
+const monthIndex = {
+  january: 0,
+  february: 1,
+  march: 2,
+  april: 3,
+  may: 4,
+  june: 5,
+  july: 6,
+  august: 7,
+  september: 8,
+  october: 9,
+  november: 10,
+  december: 11,
+}
+
+function parseEventDateLabel(dateLabel) {
+  const primaryDateLabel = dateLabel.split('-')[0].trim()
+  const match = primaryDateLabel.match(/(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/)
+
+  if (!match) {
+    return null
+  }
+
+  const [, day, monthName, year] = match
+  const month = monthIndex[monthName.toLowerCase()]
+
+  if (month === undefined) {
+    return null
+  }
+
+  return {
+    day: Number(day),
+    month,
+    year: Number(year),
+  }
+}
+
+function parseEventTimeLabel(timeLabel) {
+  const match = timeLabel.match(/(\d{1,2}):(\d{2})\s*(am|pm)/i)
+
+  if (!match) {
+    return { hours: 0, minutes: 0 }
+  }
+
+  let hours = Number(match[1]) % 12
+  const minutes = Number(match[2])
+
+  if (match[3].toLowerCase() === 'pm') {
+    hours += 12
+  }
+
+  return { hours, minutes }
+}
+
+function getEventStart(event) {
+  const dateParts = parseEventDateLabel(event.dateLabel)
+
+  if (!dateParts) {
+    return null
+  }
+
+  const { hours, minutes } = parseEventTimeLabel(event.timeLabel)
+
+  return new Date(dateParts.year, dateParts.month, dateParts.day, hours, minutes)
+}
+
+function getNextUpcomingEvent(now) {
+  const datedEvents = eventSchedule
+    .map((event) => ({
+      event,
+      start: getEventStart(event),
+    }))
+    .filter((entry) => entry.start)
+
+  const upcomingEvent = datedEvents.find(
+    (entry) => entry.start.getTime() >= now.getTime(),
+  )
+
+  if (upcomingEvent) {
+    return upcomingEvent
+  }
+
+  const lastScheduledEvent = datedEvents[datedEvents.length - 1]
+
+  return lastScheduledEvent ?? { event: eventSchedule[0], start: null }
+}
+
+function getCountdownParts(targetDate, now) {
+  const remainingMs = Math.max(targetDate.getTime() - now.getTime(), 0)
+  const totalSeconds = Math.floor(remainingMs / 1000)
+  const days = Math.floor(totalSeconds / 86400)
+  const hours = Math.floor((totalSeconds % 86400) / 3600)
+  const minutes = Math.floor((totalSeconds % 3600) / 60)
+  const seconds = totalSeconds % 60
+
+  return [
+    { label: 'Days', value: String(days).padStart(2, '0') },
+    { label: 'Hours', value: String(hours).padStart(2, '0') },
+    { label: 'Minutes', value: String(minutes).padStart(2, '0') },
+    { label: 'Seconds', value: String(seconds).padStart(2, '0') },
+  ]
+}
 
 function Particles() {
   const [particles] = useState(() =>
@@ -421,6 +504,22 @@ function Navigation() {
 }
 
 function Hero() {
+  const [now, setNow] = useState(() => new Date())
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setNow(new Date())
+    }, 1000)
+
+    return () => window.clearInterval(intervalId)
+  }, [])
+
+  const nextEventEntry = getNextUpcomingEvent(now)
+  const nextEvent = nextEventEntry.event
+  const countdownParts = nextEventEntry.start
+    ? getCountdownParts(nextEventEntry.start, now)
+    : []
+
   return (
     <section className="hero" id="top">
       <div className="container hero-shell">
@@ -448,6 +547,70 @@ function Hero() {
             </a>
           </div>
         </motion.div>
+
+        <motion.aside
+          className="glass-card hero-event-card"
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.12 }}
+        >
+          <span className="eyebrow">Next event</span>
+
+          {nextEvent.imageSrc ? (
+            <img
+              className="event-preview-image hero-event-media"
+              src={nextEvent.imageSrc}
+              alt={`${nextEvent.title} preview`}
+            />
+          ) : (
+            <div
+              className="event-preview-placeholder hero-event-media"
+              role="img"
+              aria-label={`${nextEvent.title} preview placeholder`}
+            >
+              <Image size={28} />
+              <span>Preview image coming soon</span>
+            </div>
+          )}
+
+          <div className="hero-event-body">
+            <p className="hero-event-kicker">Countdown to</p>
+            <h2>{nextEvent.title}</h2>
+
+            <div className="hero-event-meta">
+              <span>
+                <CalendarDays size={16} />
+                {nextEvent.dateLabel}
+              </span>
+              <span>
+                <Clock3 size={16} />
+                {nextEvent.timeLabel}
+              </span>
+            </div>
+
+            {countdownParts.length ? (
+              <div
+                className="hero-countdown"
+                aria-label={`Countdown until ${nextEvent.title}`}
+              >
+                {countdownParts.map((part) => (
+                  <div key={part.label} className="hero-countdown-unit">
+                    <strong>{part.value}</strong>
+                    <span>{part.label}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="hero-countdown-note">
+                The next event date will be announced soon.
+              </p>
+            )}
+
+            <a href="#events" className="inline-link">
+              View the full event list <ArrowRight size={16} />
+            </a>
+          </div>
+        </motion.aside>
       </div>
     </section>
   )
@@ -455,6 +618,7 @@ function Hero() {
 
 function Events() {
   const [activeEvent, setActiveEvent] = useState(eventSchedule[0])
+  const activeEventKey = `${activeEvent.dateLabel}-${activeEvent.title}`
 
   return (
     <section id="events" className="section">
@@ -470,7 +634,9 @@ function Events() {
             {eventSchedule.map((event, index) => (
               <motion.article
                 key={`${event.dateLabel}-${event.title}`}
-                className={`event-list-item ${activeEvent.title === event.title ? 'active' : ''}`}
+                className={`event-list-item ${
+                  activeEventKey === `${event.dateLabel}-${event.title}` ? 'active' : ''
+                }`}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
@@ -503,7 +669,7 @@ function Events() {
             </div>
 
           <motion.aside
-            key={activeEvent.title}
+            key={activeEventKey}
             className="glass-card event-detail"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -535,9 +701,9 @@ function Events() {
   )
 }
 
-function Updates() {
+function InstagramSection() {
   return (
-    <section id="updates" className="section">
+    <section id="instagram" className="section instagram-section">
       <div className="container">
         <SectionHeader
           eyebrow="Instagram"
@@ -650,8 +816,8 @@ function App() {
       <Navigation />
       <main>
         <Hero />
-        <Updates />
         <Events />
+        <InstagramSection />
         <Resources />
       </main>
       <Footer />

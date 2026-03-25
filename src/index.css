@@ -368,7 +368,10 @@ section[id] {
 
 .hero-shell {
   position: relative;
-  max-width: 760px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.9fr);
+  gap: 2rem;
+  align-items: center;
 }
 
 .hero-copy {
@@ -404,6 +407,103 @@ section[id] {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
+}
+
+.hero-event-card {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.hero-event-card::before {
+  content: '';
+  position: absolute;
+  inset: -12% -8% auto auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.2), transparent 72%);
+  pointer-events: none;
+}
+
+.hero-event-card .eyebrow {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+}
+
+.hero-event-media {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-event-body {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1rem;
+}
+
+.hero-event-kicker {
+  margin-bottom: -0.45rem;
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-event-body h2 {
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+}
+
+.hero-event-meta {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.hero-event-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--light);
+  font-size: 0.95rem;
+}
+
+.hero-countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.hero-countdown-unit {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.85rem 0.65rem;
+  border-radius: 18px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-countdown-unit strong {
+  color: var(--light);
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  line-height: 1;
+}
+
+.hero-countdown-unit span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-countdown-note {
+  margin-bottom: 0;
 }
 
 .hero-note {
@@ -840,16 +940,22 @@ section[id] {
   width: 100%;
 }
 
+.instagram-section .section-header {
+  margin-bottom: 2rem;
+}
+
 .instagram-card {
   width: 100%;
-  padding: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0.85rem;
   overflow: hidden;
 }
 
 .instagram-frame {
   display: block;
   width: 100%;
-  height: clamp(640px, 72vw, 860px);
+  height: clamp(520px, 54vw, 520px);
   border: 0;
   border-radius: 18px;
   background: #fff;
@@ -1200,12 +1306,16 @@ section[id] {
   }
 
   .instagram-frame {
-    height: clamp(520px, 110vw, 700px);
+    height: clamp(400px, 118vw, 500px);
   }
 
   .join-card,
   .spotlight-card,
   .hero-panel {
     padding: 1.6rem;
+  }
+
+  .hero-countdown {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
