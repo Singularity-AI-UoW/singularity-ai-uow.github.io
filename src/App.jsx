@@ -49,16 +49,6 @@ const eventSchedule = [
     location: 'MSB.0.01, Hamilton Campus, University of Waikato',
   },
   {
-    month: 'April',
-    dateLabel: '17 April 2026',
-    timeLabel: '6:00 pm - 8:00 pm',
-    title: 'AI project Ideas Night',
-    summary:
-      'Not sure where to start with AI? This session is designed to help members explore practical project ideas, discover different ways AI is being used, and connect with others who share similar interests. Whether you are into coding, local models, automation, research, design, or simply curious about what you can build, this event will help you turn interest into a concrete direction for the semester.',
-    imageSrc: '',
-    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
-  },
-  {
     month: 'May',
     dateLabel: '1 May 2026',
     timeLabel: '6:00 pm - 8:00 pm',
