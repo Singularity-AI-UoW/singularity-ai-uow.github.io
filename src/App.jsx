@@ -50,16 +50,6 @@ const eventSchedule = [
   },
   {
     month: 'May',
-    dateLabel: '1 May 2026',
-    timeLabel: '6:00 pm - 8:00 pm',
-    title: 'TBA',
-    summary:
-      'TBA',
-    imageSrc: '',
-    location: 'MSB.0.01, Hamilton Campus, University of Waikato',
-  },
-  {
-    month: 'May',
     dateLabel: '15 May 2026',
     timeLabel: '6:00 pm - 8:00 pm',
     title: 'TBA',
