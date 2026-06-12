@@ -4,14 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "sync:instagram": "node scripts/sync-instagram-feed.mjs",
-    "validate:site": "node scripts/validate-site-output.mjs",
-    "predev": "npm run sync:instagram",
-    "prebuild": "npm run sync:instagram",
     "dev": "vite --open /site.html",
-    "build": "vite build && node scripts/publish-root.mjs && npm run validate:site",
-    "preview": "vite preview --open /site.html",
-    "deploy": "bash deploy.sh"
+    "build": "vite build && node scripts/publish-root.mjs",
+    "preview": "vite preview --open /site.html"
   },
   "dependencies": {
     "react": "^18.3.1",

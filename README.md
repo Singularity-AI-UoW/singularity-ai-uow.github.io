@@ -4,20 +4,18 @@ Website for Singularity, the University of Waikato AI Club.
 
 ## Features
 
-- **Responsive Design**: Works across desktop and mobile with a dark, grid-based visual style
+- **Responsive Design**: Works across desktop and mobile with a bright, editorial student-club visual style
 - **Interactive Elements**:
-  - Animated particle background
   - Smooth scroll navigation with a mobile menu
-  - Glassmorphism cards with hover effects
-  - Live Instagram embed iframes sized to each post
+  - Animated event cards and resource cards
+  - Live Instagram profile embed
+  - Countdown to the next scheduled event
 - **Sections**:
   - Hero with call-to-action
-  - About section
-  - 2026 events calendar with playbook summaries
-  - Instagram updates section
-  - Executive team section
+  - 2026 events calendar with difficulty markers and workshop summaries
+  - Instagram profile section
   - Resources library
-  - Footer with contact links
+  - Footer with sponsor and contact links
 - **Tech Stack**: React 18, Framer Motion, Lucide Icons, Vite
 
 ## Getting Started
@@ -32,13 +30,12 @@ npm install
 npm run dev
 ```
 Open `http://localhost:5173/site.html` in your browser.
-Starting the dev server also refreshes `public/instagram-posts.json` from the latest public Instagram posts.
 
 ### Build for Production
 ```bash
 npm run build
 ```
-This first refreshes `public/instagram-posts.json` from Instagram, then builds the site into `dist/`, and finally refreshes the GitHub Pages root files (`index.html` and `assets/`).
+This builds the site into `dist/`, then refreshes the GitHub Pages root files (`index.html`, `assets/`, and public static assets).
 
 ### Preview Production Build
 ```bash
@@ -57,7 +54,6 @@ npm run preview
 - **Colors**: Edit CSS variables in `src/index.css`
 - **Content**: Update section data in `src/App.jsx`
 - **Logo**: Replace `public/singularity-icon.svg`
-- **Instagram updates**: Run `npm run sync:instagram` to refresh `public/instagram-posts.json` from the latest public posts
 
 ## License
 
