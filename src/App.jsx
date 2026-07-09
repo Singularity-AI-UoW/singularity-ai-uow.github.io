@@ -99,17 +99,6 @@ const eventSchedule = [
   },
   {
     month: "July",
-    dateLabel: "9 July 2026",
-    timeLabel: "6:00 pm - 8:00 pm",
-    title: "Introduction to Agentic AI",
-    difficulty: "intermediate",
-    summary:
-      "One of the most important developments in the field of AI around 2025-2026 is agentic AI. What is an AI agent? What does it do? How does it differ from chatbot AI like ChatGPT, Claude, Gemini, etc.? How can we use agentic AI to automate tasks in our daily lives? This workshop will take you through the steps and procedures to set up your own agent on your laptop, overcome a series of challenges, and finally integrate it into your existing digital workflow",
-    imageSrc: "/09_07_26.png",
-    location: "MSB.0.01, Hamilton Campus, University of Waikato",
-  },
-  {
-    month: "July",
     dateLabel: "24 July 2026",
     timeLabel: "6:00 pm - 8:00 pm",
     title: "Attention is all you Need",
