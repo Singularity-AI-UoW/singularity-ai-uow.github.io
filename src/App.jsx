@@ -109,6 +109,19 @@ const eventSchedule = [
     location: "MSB.0.01, Hamilton Campus, University of Waikato",
   },
   {
+    month: "July",
+    dateLabel: "31 July 2026",
+    timeLabel: "5:00 pm - 7:30 pm",
+    title: "Re:Gen AI",
+    difficulty: "beginner",
+    summary:
+      "A free evening for rangatahi aged 16+ who are curious about building a future in AI. Hear short talks from people using AI in real jobs, join a panel discussion, and network over dinner and drinks. No tech background is needed, and the evening includes a talk from Andeed Ma on AI ethics and safety, with more speakers to be announced.",
+    imageSrc: "/31_07_26.jpg",
+    location:
+      "Waikato Student Union Building, Hamilton Campus, University of Waikato",
+    registrationUrl: "https://luma.com/xalyp2oz",
+  },
+  {
     month: "August",
     dateLabel: "7 August 2026",
     timeLabel: "6:00 pm - 8:00 pm",
@@ -679,6 +692,16 @@ function Events() {
             )}
             <h3>{activeEvent.title}</h3>
             <p className="event-summary">{activeEvent.summary}</p>
+            {activeEvent.registrationUrl ? (
+              <a
+                href={activeEvent.registrationUrl}
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Register for this event <ExternalLink size={17} />
+              </a>
+            ) : null}
           </motion.aside>
         </div>
       </div>
