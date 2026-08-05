@@ -123,15 +123,6 @@ const eventSchedule = [
   },
   {
     month: "August",
-    dateLabel: "7 August 2026",
-    timeLabel: "6:00 pm - 8:00 pm",
-    title: "TBA",
-    summary: "TBA",
-    imageSrc: "",
-    location: "MSB.0.01, Hamilton Campus, University of Waikato",
-  },
-  {
-    month: "August",
     dateLabel: "21 August 2026",
     timeLabel: "6:00 pm - 8:00 pm",
     title: "TBA",
