@@ -35,7 +35,7 @@ All checks were run from `/tmp/aemeath-singularity-site` against the generated s
 
 The changed page and source contain no live credentials, tokens, passwords, mailbox data, analytics, credential collection, or dynamic user-input rendering. The page explicitly describes the read-only Gmail/Himalaya boundary, approved/synthetic input, Telegram fallback, installation prerequisite, two-hour window versus 90-minute teaching cap, and no-send/no-move/no-delete/no-re-flag policy.
 
-This is a local-only implementation. Nothing was pushed, no PR was opened, and the deployed site was not changed. The canonical workshop URL currently returns GitHub Pages 404 and is expected to remain unavailable until this branch is approved, pushed, and deployed.
+The implementation was fully verified locally before public write. Branch `feat/hermes-agent-workshop` is now pushed and PR #2 is open for review; it has not been merged, and the deployed site has not changed. The canonical workshop URL currently returns GitHub Pages 404 and is expected to remain unavailable until this PR is approved, merged, and deployed.
 
 ## Known limitations
 
