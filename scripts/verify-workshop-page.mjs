@@ -14,7 +14,7 @@ const officialLinks = [
   'https://hermes-agent.nousresearch.com/docs/getting-started/installation',
   'https://hermes-agent.nousresearch.com/docs/user-guide/messaging',
   'https://hermes-agent.nousresearch.com/docs/user-guide/features/cron',
-  'https://discord.gg/XZk7hgpr',
+  'https://discord.gg/XZk7hgprR',
   'https://www.instagram.com/singularity_uow/?utm_source=ig_web_button_share_sheet',
 ]
 const workshopSummary =
@@ -76,6 +76,9 @@ async function main() {
     'no mail was sent',
     'daily briefing',
     'safe Telegram-only fallback',
+    'approved/configured input',
+    'Two-hour event window; teaching capped at 90 minutes',
+    'Three essentials, plus one optional email lane',
   ]) {
     assert.match(html, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'), `${phrase} missing from workshop page`)
   }
@@ -110,6 +113,10 @@ async function main() {
   assert.match(source, /imageSrc:\s*["']\/04_09_26\.png["']/)
   assert.match(source, /resourceUrl:\s*["']\/workshops\/build-your-own-ai-agent\/["']/)
   assert.match(source, /Open workshop guide/)
+  assert.match(source, /className="event-list-facts event-detail-facts"/)
+  assert.match(source, /<time>\{activeEvent\.dateLabel\}<\/time>/)
+  assert.match(source, /\{activeEvent\.timeLabel\}/)
+  assert.match(source, /\{activeEvent\.location\}/)
   assert.match(workshopEvent, /timeLabel:\s*["']6:00 pm - 8:00 pm["']/)
   assert.match(workshopEvent, /location:\s*["']MSB\.0\.01, Hamilton Campus, University of Waikato["']/)
 

@@ -955,4 +955,20 @@ figcaption,
   .button-primary {
     border: 1px solid var(--cyan);
   }
+
+  .community-links a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-content: start;
+    gap: 0.15rem;
+  }
+
+  .community-links b {
+    display: none;
+  }
+
+  .community-links a[href^="http"]::after {
+    display: block;
+    width: 100%;
+  }
 }

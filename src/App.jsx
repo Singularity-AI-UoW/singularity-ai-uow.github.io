@@ -682,6 +682,20 @@ function Events() {
             {activeEvent.audience ? (
               <span className="event-audience">{activeEvent.audience}</span>
             ) : null}
+            <div className="event-list-facts event-detail-facts" aria-label={`${activeEvent.title} event details`}>
+              <div className="event-fact">
+                <CalendarDays size={16} />
+                <time>{activeEvent.dateLabel}</time>
+              </div>
+              <div className="event-fact">
+                <Clock3 size={16} />
+                <span>{activeEvent.timeLabel}</span>
+              </div>
+              <div className="event-fact">
+                <MapPin size={16} />
+                <span>{activeEvent.location}</span>
+              </div>
+            </div>
             <p className="event-summary">{activeEvent.summary}</p>
             {activeEvent.registrationUrl ? (
               <a
