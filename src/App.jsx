@@ -52,6 +52,9 @@ const difficultyLevels = {
 
 const difficultyLegend = ["beginner", "intermediate", "advanced"];
 
+const workshopSummary =
+  "Build a working AI agent workflow with Hermes Agent: connect Telegram, validate a read-only Gmail lane through Himalaya, then schedule and verify a daily briefing—plus a safe Telegram-only fallback.";
+
 const eventSchedule = [
   {
     month: "March",
@@ -125,10 +128,13 @@ const eventSchedule = [
     month: "September",
     dateLabel: "4 September 2026",
     timeLabel: "6:00 pm - 8:00 pm",
-    title: "TBA",
-    summary: "TBA",
-    imageSrc: "",
+    title: "Build Your Own AI Agent",
+    difficulty: "beginner",
+    audience: "Beginner-friendly · mixed experience",
+    summary: workshopSummary,
+    imageSrc: "/04_09_26.png",
     location: "MSB.0.01, Hamilton Campus, University of Waikato",
+    resourceUrl: "/workshops/build-your-own-ai-agent/",
   },
   {
     month: "September",
@@ -673,6 +679,9 @@ function Events() {
               </div>
             )}
             <h3>{activeEvent.title}</h3>
+            {activeEvent.audience ? (
+              <span className="event-audience">{activeEvent.audience}</span>
+            ) : null}
             <p className="event-summary">{activeEvent.summary}</p>
             {activeEvent.registrationUrl ? (
               <a
@@ -682,6 +691,10 @@ function Events() {
                 rel="noreferrer"
               >
                 Register for this event <ExternalLink size={17} />
+              </a>
+            ) : activeEvent.resourceUrl ? (
+              <a href={activeEvent.resourceUrl} className="btn btn-primary">
+                Open workshop guide <BookOpen size={17} />
               </a>
             ) : null}
           </motion.aside>

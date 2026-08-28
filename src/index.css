@@ -816,6 +816,17 @@ section[id] {
   font-size: 1.45rem;
 }
 
+.event-audience {
+  width: fit-content;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgba(66, 98, 255, 0.22);
+  border-radius: 999px;
+  color: var(--blue);
+  background: var(--sky);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
 .event-summary {
   margin-bottom: 0;
   color: var(--ink-soft);

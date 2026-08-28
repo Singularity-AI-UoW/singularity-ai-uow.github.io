@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite --open /site.html",
     "build": "vite build && node scripts/publish-root.mjs",
+    "test:publish-root": "node --test scripts/publish-root.test.mjs",
+    "verify:workshop": "node scripts/verify-workshop-page.mjs",
     "preview": "vite preview --open /site.html"
   },
   "dependencies": {
