@@ -487,6 +487,7 @@ export async function verifyWorkshopPage() {
   const html = await readFile(pagePath, 'utf8')
   const publishedHtml = await readFile(publishedPagePath, 'utf8')
   const source = await readFile(join(repoDir, 'src/App.jsx'), 'utf8')
+  const styles = await readFile(join(repoDir, 'src/index.css'), 'utf8')
 
   assert.match(html, /<title>[^<]*Build Your Own AI Agent[^<]*<\/title>/i)
   assert.match(html, /4 September 2026/)
@@ -544,6 +545,79 @@ export async function verifyWorkshopPage() {
   const workshopEvent = source.slice(workshopEventStart, workshopEventEnd)
   assert.ok(workshopEventStart >= 0 && workshopEventEnd > workshopEventStart)
   assert.doesNotMatch(workshopEvent, /TBA/)
+  assert.doesNotMatch(workshopEvent, /audience\s*:/)
+  assert.match(workshopEvent, /visualTheme:\s*["']hermes["']/)
+  assert.match(
+    workshopEvent,
+    /overviewImageSrc:\s*["']\/hermes-agent-homepage\.png["']/,
+  )
+  assert.match(
+    workshopEvent,
+    /overviewImageHref:\s*["']https:\/\/hermes-agent\.nousresearch\.com\/["']/,
+  )
+  assert.match(source, /className=[^\n]*event-detail-hermes/)
+  assert.match(source, /className=["']event-reference-frame["']/)
+  assert.match(source, /className=["']event-reference-image["']/)
+  assert.match(
+    source,
+    /aria-label=["']Open the official Hermes Agent site in a new tab["']/,
+  )
+  assert.match(source, /Official Hermes Agent site/)
+  assert.match(styles, /\.event-detail-hermes\s*\{/)
+  assert.match(styles, /\.event-reference-frame\s*\{/)
+  assert.match(styles, /font-family:\s*["']Bodoni Moda["']/)
+  assert.match(styles, /font-family:\s*["']IBM Plex Mono["']/)
+  assert.match(styles, /url\(["']?\/assets\/fonts\/bodoni-moda-latin\.woff2["']?\)/)
+  assert.match(
+    styles,
+    /url\(["']?\/assets\/fonts\/ibm-plex-mono-500-latin\.woff2["']?\)/,
+  )
+  assert.match(
+    styles,
+    /url\(["']?\/assets\/fonts\/ibm-plex-mono-600-latin\.woff2["']?\)/,
+  )
+
+  for (const fontAsset of [
+    'bodoni-moda-latin.woff2',
+    'ibm-plex-mono-500-latin.woff2',
+    'ibm-plex-mono-600-latin.woff2',
+  ]) {
+    const fontPath = join(publicDir, 'assets', 'fonts', fontAsset)
+    const fontStat = await lstat(fontPath)
+    assert.ok(fontStat.isFile() && !fontStat.isSymbolicLink())
+    assert.ok(fontStat.size > 10_000)
+    assert.equal((await readFile(fontPath)).subarray(0, 4).toString('ascii'), 'wOF2')
+  }
+
+  for (const [licenseAsset, copyrightNotice] of [
+    [
+      'OFL-BodoniModa.txt',
+      'Copyright 2020 The Bodoni Moda Project Authors (https://github.com/indestructible-type/Bodoni)',
+    ],
+    [
+      'OFL-IBMPlexMono.txt',
+      'Copyright © 2017 IBM Corp. with Reserved Font Name "Plex"',
+    ],
+  ]) {
+    const licensePath = join(publicDir, 'assets', 'fonts', licenseAsset)
+    const licenseStat = await lstat(licensePath)
+    assert.ok(licenseStat.isFile() && !licenseStat.isSymbolicLink())
+    assert.ok(licenseStat.size > 4_000)
+    const licenseText = await readFile(licensePath, 'utf8')
+    assert.ok(licenseText.startsWith(copyrightNotice))
+    assert.match(licenseText, /SIL OPEN FONT LICENSE Version 1\.1/)
+  }
+
+  const referenceImagePath = join(publicDir, 'hermes-agent-homepage.png')
+  const referenceImageStat = await lstat(referenceImagePath)
+  assert.ok(referenceImageStat.isFile() && !referenceImageStat.isSymbolicLink())
+  assert.ok(referenceImageStat.size > 100_000)
+  const referenceImage = await readFile(referenceImagePath)
+  assert.deepEqual(
+    [...referenceImage.subarray(0, 8)],
+    [137, 80, 78, 71, 13, 10, 26, 10],
+  )
+
   assert.match(source, /title:\s*["']Build Your Own AI Agent["']/)
   assert.match(
     source,

@@ -1,3 +1,27 @@
+@font-face {
+  font-family: "Bodoni Moda";
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url("/assets/fonts/bodoni-moda-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/assets/fonts/ibm-plex-mono-500-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/ibm-plex-mono-600-latin.woff2") format("woff2");
+}
+
 :root {
   --ink: #111216;
   --ink-soft: #343946;
@@ -816,6 +840,172 @@ section[id] {
   font-size: 1.45rem;
 }
 
+.event-detail-hermes {
+  --hermes-electric: #2412d8;
+  --hermes-electric-deep: #160890;
+  --hermes-paper: #f7f6ef;
+  gap: 1.15rem;
+  padding: 1.35rem;
+  overflow: hidden;
+  color: var(--hermes-paper);
+  background-color: var(--hermes-electric);
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.15) 0.7px,
+    transparent 0.9px
+  );
+  background-size: 4px 4px;
+  border: 1px solid var(--hermes-electric-deep);
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.event-detail-hermes .event-detail-header {
+  position: relative;
+  z-index: 1;
+}
+
+.event-detail-hermes .eyebrow {
+  margin: 0;
+  color: var(--hermes-paper);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.event-detail-hermes .difficulty-dot {
+  background: var(--hermes-paper);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.event-detail-hermes .event-detail-title {
+  max-width: 9ch;
+  margin: 0;
+  color: var(--hermes-paper);
+  font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+  font-size: clamp(2.8rem, 4.7vw, 4.65rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.event-reference-frame {
+  display: grid;
+  overflow: hidden;
+  color: var(--hermes-electric);
+  background: var(--hermes-paper);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 2px;
+  transition: transform 0.2s ease;
+}
+
+.event-reference-frame:hover {
+  transform: translateY(-2px);
+}
+
+.event-reference-frame:focus-visible {
+  outline: 3px solid var(--hermes-paper);
+  outline-offset: 3px;
+}
+
+.event-reference-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center top;
+  background: var(--hermes-electric);
+}
+
+.event-reference-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 42px;
+  padding: 0.6rem 0.72rem;
+  color: var(--hermes-electric-deep);
+  background: var(--hermes-paper);
+  border-top: 1px solid rgba(36, 18, 216, 0.22);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.event-detail-hermes .event-detail-facts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--hermes-paper);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 2px;
+}
+
+.event-detail-hermes .event-detail-facts .event-fact {
+  min-width: 0;
+  min-height: 48px;
+  padding: 0.68rem 0.72rem;
+  color: var(--hermes-electric-deep);
+  border-right: 1px solid rgba(36, 18, 216, 0.2);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.event-detail-hermes .event-detail-facts .event-fact:nth-child(2) {
+  border-right: 0;
+}
+
+.event-detail-hermes .event-detail-facts .event-fact:nth-child(3) {
+  grid-column: 1 / -1;
+  border-top: 1px solid rgba(36, 18, 216, 0.2);
+  border-right: 0;
+}
+
+.event-detail-hermes .event-summary {
+  margin: 0;
+  color: rgba(247, 246, 239, 0.9);
+  font-size: 0.98rem;
+  line-height: 1.62;
+}
+
+.event-detail-hermes .btn-primary {
+  width: 100%;
+  min-height: 48px;
+  justify-content: space-between;
+  color: var(--hermes-electric-deep);
+  background: var(--hermes-paper);
+  border-color: var(--hermes-paper);
+  border-radius: 2px;
+  box-shadow: none;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.event-detail-hermes .btn-primary:hover {
+  color: var(--hermes-electric-deep);
+  background: #ffffff;
+  border-color: #ffffff;
+  box-shadow: none;
+}
+
+.event-detail-hermes .btn-primary:focus-visible {
+  outline: 3px solid var(--hermes-paper);
+  outline-offset: 3px;
+}
+
 .event-audience {
   width: fit-content;
   padding: 0.35rem 0.65rem;
@@ -1239,6 +1429,31 @@ section[id] {
   .event-detail,
   .resource-card {
     padding: 1rem;
+  }
+
+  .event-detail-hermes .event-detail-title {
+    max-width: 8ch;
+    font-size: clamp(2.55rem, 14vw, 3.6rem);
+  }
+
+  .event-detail-hermes .event-detail-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .event-detail-hermes .event-detail-facts .event-fact {
+    border-right: 0;
+  }
+
+  .event-detail-hermes .event-detail-facts .event-fact + .event-fact {
+    border-top: 1px solid rgba(36, 18, 216, 0.2);
+  }
+
+  .event-detail-hermes .event-detail-facts .event-fact:nth-child(3) {
+    grid-column: auto;
+  }
+
+  .event-reference-caption {
+    font-size: 0.62rem;
   }
 
   .hero-event-body h2 {
