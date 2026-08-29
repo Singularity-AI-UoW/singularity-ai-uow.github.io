@@ -130,7 +130,11 @@ const eventSchedule = [
     timeLabel: "6:00 pm - 8:00 pm",
     title: "Build Your Own AI Agent",
     difficulty: "beginner",
-    audience: "Beginner-friendly · mixed experience",
+    visualTheme: "hermes",
+    overviewImageSrc: "/hermes-agent-homepage.png",
+    overviewImageHref: "https://hermes-agent.nousresearch.com/",
+    overviewImageAlt: "Official Hermes Agent website homepage",
+    overviewImageCaption: "Official Hermes Agent site · captured 29 August 2026",
     summary: workshopSummary,
     imageSrc: "/04_09_26.png",
     location: "MSB.0.01, Hamilton Campus, University of Waikato",
@@ -653,7 +657,7 @@ function Events() {
 
           <motion.aside
             key={activeEventKey}
-            className="glass-card event-detail"
+            className={`glass-card event-detail ${activeEvent.visualTheme === "hermes" ? "event-detail-hermes" : ""}`}
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25 }}
@@ -662,7 +666,27 @@ function Events() {
               <span className="eyebrow">Event overview</span>
               <DifficultyDot difficulty={activeEvent.difficulty} />
             </div>
-            {activeEvent.imageSrc ? (
+            {activeEvent.overviewImageSrc ? (
+              <a
+                className="event-reference-frame"
+                href={activeEvent.overviewImageHref}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open the official Hermes Agent site in a new tab"
+              >
+                <img
+                  className="event-reference-image"
+                  src={activeEvent.overviewImageSrc}
+                  alt={activeEvent.overviewImageAlt}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="event-reference-caption">
+                  {activeEvent.overviewImageCaption}
+                  <ExternalLink size={15} aria-hidden="true" />
+                </span>
+              </a>
+            ) : activeEvent.imageSrc ? (
               <img
                 className="event-preview-image"
                 src={activeEvent.imageSrc}
@@ -678,7 +702,7 @@ function Events() {
                 <span>Event preview image placeholder</span>
               </div>
             )}
-            <h3>{activeEvent.title}</h3>
+            <h3 className="event-detail-title">{activeEvent.title}</h3>
             {activeEvent.audience ? (
               <span className="event-audience">{activeEvent.audience}</span>
             ) : null}
