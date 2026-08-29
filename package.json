@@ -5,20 +5,24 @@
   "type": "module",
   "scripts": {
     "dev": "vite --open /site.html",
-    "build": "vite build && node scripts/publish-root.mjs",
+    "build": "node scripts/static-tree-safety.mjs && vite build && node scripts/publish-root.mjs",
+    "test:publish-root": "node --test scripts/publish-root.test.mjs",
+    "test:workshop": "node --test scripts/publish-root.test.mjs scripts/static-tree-safety.test.mjs scripts/verify-workshop-page.test.mjs",
+    "verify:workshop": "node scripts/verify-workshop-page.mjs",
     "preview": "vite preview --open /site.html"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "framer-motion": "^11.0.0",
     "lucide-react": "^0.363.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-router-dom": "^6.22.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^6.0.1",
+    "parse5": "^8.0.1",
     "vite": "^8.0.10"
   }
 }
