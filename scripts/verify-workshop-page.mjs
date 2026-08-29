@@ -623,7 +623,7 @@ export async function verifyWorkshopPage() {
     source,
     new RegExp(workshopSummary.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')),
   )
-  assert.match(source, /imageSrc:\s*["']\/04_09_26\.png["']/)
+  assert.match(source, /imageSrc:\s*["']\/hermes-agent-homepage\.png["']/)
   assert.match(
     source,
     /resourceUrl:\s*["']\/workshops\/build-your-own-ai-agent\/["']/,

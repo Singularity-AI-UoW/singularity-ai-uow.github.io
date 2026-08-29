@@ -136,7 +136,7 @@ const eventSchedule = [
     overviewImageAlt: "Official Hermes Agent website homepage",
     overviewImageCaption: "Official Hermes Agent site · captured 29 August 2026",
     summary: workshopSummary,
-    imageSrc: "/04_09_26.png",
+    imageSrc: "/hermes-agent-homepage.png",
     location: "MSB.0.01, Hamilton Campus, University of Waikato",
     resourceUrl: "/workshops/build-your-own-ai-agent/",
   },
